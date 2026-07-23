@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA fallback
+# /b/:slug should serve index.html so client-side JS can render the brief
+
+/b/*  /index.html  200
