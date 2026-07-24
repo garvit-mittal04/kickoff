@@ -1,20 +1,13 @@
 name = "kickoff-api"
 main = "src/index.ts"
-compatibility_date = "2026-07-22"
+compatibility_date = "2026-07-24"
 compatibility_flags = ["nodejs_compat"]
 
-# KV namespaces — IDs added after `wrangler kv namespace create` (later today)
+# Cloudflare Workers AI — free tier, ~10k neurons/day
+[ai]
+binding = "AI"
+
+# KV namespaces will be added Day 56 for permanent brief storage
 # [[kv_namespaces]]
 # binding = "KICKOFF_BRIEFS"
 # id = "<id>"
-
-# [[kv_namespaces]]
-# binding = "KICKOFF_SESSIONS"
-# id = "<id>"
-
-# [[kv_namespaces]]
-# binding = "KICKOFF_RATELIMIT"
-# id = "<id>"
-
-# Secrets like ANTHROPIC_API_KEY are added via:
-#   wrangler secret put ANTHROPIC_API_KEY

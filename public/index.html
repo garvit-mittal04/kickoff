@@ -54,7 +54,6 @@ input, textarea, select {
 input:focus, textarea:focus, select:focus { border-color: var(--accent); }
 textarea { resize: vertical; }
 
-/* HEADER */
 .header {
   position: sticky; top: 0; z-index: 50;
   background: rgba(11,13,19,0.85); backdrop-filter: blur(12px);
@@ -73,15 +72,11 @@ textarea { resize: vertical; }
 .nav { margin-left: auto; display: flex; gap: 24px; font-size: 14px; }
 .nav a { color: var(--text-muted); transition: color 0.15s; }
 .nav a:hover { color: var(--text); }
-@media (max-width: 640px) {
-  .nav { display: none; }
-}
+@media (max-width: 640px) { .nav { display: none; } }
 
-/* VIEWS */
 .view { display: none; }
 .view.active { display: block; }
 
-/* BUTTONS */
 .btn {
   padding: 10px 18px; border-radius: 8px;
   background: var(--bg-elev); border: 1px solid var(--border);
@@ -94,16 +89,14 @@ textarea { resize: vertical; }
   background: linear-gradient(135deg, var(--accent), #6d28d9); border-color: transparent; color: white;
 }
 .btn.primary:hover { filter: brightness(1.1); }
+.btn.primary:disabled { opacity: 0.5; cursor: not-allowed; }
 .btn.large { padding: 14px 26px; font-size: 15px; }
 .btn.small { padding: 6px 12px; font-size: 12px; }
 .btn.ghost { background: transparent; border-color: transparent; color: var(--text-muted); }
 .btn.ghost:hover { color: var(--text); background: var(--bg-elev); }
 
-/* CONTAINER */
 .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-.container-tight { max-width: 720px; margin: 0 auto; padding: 0 24px; }
 
-/* HERO */
 .hero { text-align: center; padding: 80px 24px 60px; }
 .hero-tag {
   display: inline-block; font-family: var(--font-mono); font-size: 11px;
@@ -121,19 +114,13 @@ textarea { resize: vertical; }
 }
 .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-/* SECTION */
 .section { padding: 48px 24px; max-width: 960px; margin: 0 auto; }
 .section-eyebrow {
   font-family: var(--font-mono); font-size: 11px;
   color: var(--accent-2); letter-spacing: 3px; font-weight: 700;
   margin: 0 0 20px; text-align: center;
 }
-.section h2:not(.section-eyebrow) {
-  font-family: var(--font-serif); font-size: 32px; text-align: center;
-  margin: 0 0 36px; letter-spacing: -0.5px;
-}
 
-/* THREE COLS */
 .three-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 @media (max-width: 720px) { .three-cols { grid-template-columns: 1fr; } }
 .step {
@@ -147,7 +134,6 @@ textarea { resize: vertical; }
 .step h3 { margin: 0 0 8px; font-family: var(--font-serif); font-size: 20px; letter-spacing: -0.3px; }
 .step p { margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.55; }
 
-/* EXAMPLES */
 .examples-grid { display: grid; gap: 12px; }
 .example-card {
   background: var(--bg-elev); border: 1px solid var(--border);
@@ -163,11 +149,9 @@ textarea { resize: vertical; }
   .example-q { font-size: 15px; }
 }
 
-/* FAQ */
 .faq details {
   background: var(--bg-elev); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 16px 20px; margin-bottom: 8px;
-  transition: background 0.15s;
 }
 .faq details[open] { background: var(--bg-elev2); border-color: var(--border-strong); }
 .faq summary {
@@ -176,12 +160,11 @@ textarea { resize: vertical; }
 }
 .faq summary::before {
   content: '+'; font-family: var(--font-mono); font-size: 20px;
-  color: var(--accent); width: 20px; transition: transform 0.15s;
+  color: var(--accent); width: 20px;
 }
 .faq details[open] summary::before { content: '−'; }
 .faq p { margin: 12px 0 0 32px; color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
-/* INTERVIEW VIEW */
 .modal-wrap {
   min-height: calc(100vh - 66px); display: grid; place-items: center; padding: 40px 20px;
 }
@@ -209,7 +192,7 @@ textarea { resize: vertical; }
 }
 .progress-fill {
   height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  transition: width 0.35s; width: 20%;
+  transition: width 0.35s; width: 0%;
 }
 .progress-text { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 2px; }
 
@@ -230,7 +213,13 @@ textarea { resize: vertical; }
 .interview-actions { display: flex; gap: 8px; align-items: center; }
 .interview-actions .btn.primary { margin-left: auto; }
 
-/* GENERATING VIEW */
+.error-banner {
+  background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+  color: var(--danger); padding: 10px 14px; border-radius: 6px;
+  font-size: 13px; margin-bottom: 12px; display: none;
+}
+.error-banner.show { display: block; }
+
 .loading-wrap {
   min-height: calc(100vh - 66px); display: grid; place-items: center;
   padding: 40px 20px; text-align: center;
@@ -245,10 +234,7 @@ textarea { resize: vertical; }
 .loading-wrap h2 { font-family: var(--font-serif); font-size: 28px; margin: 0 0 8px; letter-spacing: -0.4px; }
 .loading-wrap p { color: var(--text-muted); margin: 0; }
 
-/* BRIEF VIEW */
-.brief-page {
-  max-width: 780px; margin: 0 auto; padding: 40px 24px 80px;
-}
+.brief-page { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
 .brief-head { text-align: center; margin-bottom: 32px; }
 .brief-eyebrow {
   font-family: var(--font-mono); font-size: 11px; color: var(--accent-2);
@@ -268,7 +254,6 @@ textarea { resize: vertical; }
   border: none; background: transparent; padding: 6px 0;
   font-family: var(--font-mono); font-size: 13px; color: var(--text);
 }
-.permalink-box input:focus { border: none; }
 
 .share-row { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
 
@@ -287,8 +272,8 @@ textarea { resize: vertical; }
 }
 .brief-content p { color: var(--text-muted); margin: 0 0 12px; line-height: 1.6; }
 .brief-content strong { color: var(--text); }
-.brief-content ul { padding-left: 20px; margin: 0 0 12px; }
-.brief-content ol { padding-left: 20px; margin: 0 0 12px; }
+.brief-content em { color: var(--text); font-style: italic; }
+.brief-content ul, .brief-content ol { padding-left: 20px; margin: 0 0 12px; }
 .brief-content li { color: var(--text-muted); margin-bottom: 6px; line-height: 1.55; }
 .brief-content li strong { color: var(--text); }
 .brief-content .callout {
@@ -296,14 +281,10 @@ textarea { resize: vertical; }
   padding: 12px 16px; border-radius: 4px; margin: 16px 0;
   font-size: 14px; color: var(--text-muted);
 }
-.brief-content .callout strong { color: var(--accent-2); font-family: var(--font-mono); font-size: 10px; letter-spacing: 3px; }
 
-.brief-actions { display: flex; justify-content: center; gap: 8px; }
+.brief-actions { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
 
-/* PERMALINK VIEW */
-.permalink-page {
-  max-width: 780px; margin: 0 auto; padding: 40px 24px 80px;
-}
+.permalink-page { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
 .permalink-head {
   background: var(--bg-elev); border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: 24px 28px; margin-bottom: 24px;
@@ -318,16 +299,13 @@ textarea { resize: vertical; }
 }
 .permalink-actions { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
 
-/* FOOTER */
 .footer {
   border-top: 1px solid var(--border); text-align: center;
   padding: 32px 24px; color: var(--text-dim); font-size: 13px;
   margin-top: 60px;
 }
 .footer a { color: var(--text-muted); border-bottom: 1px dashed var(--text-dim); }
-.footer a:hover { color: var(--text); }
 
-/* TOAST */
 .toast {
   position: fixed; bottom: 24px; left: 50%;
   transform: translateX(-50%) translateY(80px);
@@ -337,6 +315,7 @@ textarea { resize: vertical; }
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 .toast.success { border-color: var(--success); }
+.toast.error { border-color: var(--danger); }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
@@ -345,30 +324,28 @@ textarea { resize: vertical; }
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <a class="brand" href="/">
     <div class="brand-logo">K</div>
     <div>
       <div class="brand-name">Kickoff</div>
-      <div class="brand-sub">under construction · day 54 of 60</div>
+      <div class="brand-sub">v1.0 · day 55 of 60</div>
     </div>
   </a>
   <nav class="nav">
+    <a href="/">Home</a>
     <a href="#how">How it works</a>
     <a href="#examples">Examples</a>
-    <a href="#faq">FAQ</a>
     <a href="https://github.com/garvit-mittal04/kickoff" target="_blank">GitHub</a>
   </nav>
 </header>
 
-<!-- ============ LANDING VIEW ============ -->
+<!-- LANDING VIEW -->
 <section id="view-landing" class="view active">
-
   <div class="hero">
-    <span class="hero-tag">STATIC SHELL · DAY 54 OF 60 · MOCK DATA</span>
+    <span class="hero-tag">LIVE AI · POWERED BY CLOUDFLARE WORKERS AI · FREE</span>
     <h1>The analysis brief you write<br><em>before</em> you write any SQL.</h1>
-    <p>Turn any vague exec question into a structured, shareable brief through a five-minute interview. Send the brief to your exec for scope alignment. Then write SQL knowing you're answering the right question.</p>
+    <p>Paste your vague exec question. Get a structured brief through a five-minute AI-powered interview. Send the brief to your exec for scope alignment. Then write SQL knowing you're answering the right question.</p>
     <div class="hero-actions">
       <button class="btn primary large" onclick="startInterview()">Start a Brief →</button>
       <a class="btn large" href="#examples">See an example ↓</a>
@@ -381,12 +358,12 @@ textarea { resize: vertical; }
       <div class="step">
         <div class="step-num">STEP 01</div>
         <h3>Paste the vague ask</h3>
-        <p>Copy the exec question exactly as it arrived. Don't rewrite it — that's the tool's job.</p>
+        <p>Copy the exec question exactly as it arrived. Don't rewrite — that's the tool's job.</p>
       </div>
       <div class="step">
         <div class="step-num">STEP 02</div>
         <h3>Answer 4-6 clarifiers</h3>
-        <p>The tool asks adaptive follow-up questions to decompose the ambiguous ask.</p>
+        <p>AI asks adaptive follow-up questions to decompose the ambiguous ask.</p>
       </div>
       <div class="step">
         <div class="step-num">STEP 03</div>
@@ -397,7 +374,7 @@ textarea { resize: vertical; }
   </section>
 
   <section id="examples" class="section">
-    <h2 class="section-eyebrow">LIVE EXAMPLE BRIEFS</h2>
+    <h2 class="section-eyebrow">EXAMPLE BRIEFS</h2>
     <div class="examples-grid">
       <a class="example-card" href="/b/retention">
         <div class="example-q">"Why is program retention down this quarter?"</div>
@@ -418,80 +395,77 @@ textarea { resize: vertical; }
     <h2 class="section-eyebrow">FAQ</h2>
     <details>
       <summary>What is this?</summary>
-      <p>Kickoff is a scoping tool for analysts and ops professionals. When an executive asks a vague question ("why is retention down?"), the tool decomposes it into a structured analysis brief through a five-minute interview. The brief becomes a shareable permalink you send to the exec for scope alignment before you write any SQL.</p>
+      <p>Kickoff is a scoping tool for analysts and ops professionals. When an executive asks a vague question ("why is retention down?"), the tool decomposes it into a structured analysis brief through a five-minute AI-powered interview. The brief becomes a shareable permalink you send to the exec for scope alignment before you write any SQL.</p>
     </details>
     <details>
-      <summary>Who is it for?</summary>
-      <p>Analysts and operations pros at nonprofits and mid-market companies. If you receive 3-8 ad hoc data requests per week from executives, this tool exists to save you from doing the wrong analysis.</p>
-    </details>
-    <details>
-      <summary>Is it free?</summary>
-      <p>Yes. No signup, no API key, no account. Just paste a question and go. Rate limited to prevent abuse (10 briefs per IP per hour).</p>
+      <summary>Is it really free?</summary>
+      <p>Yes. Runs on Cloudflare Workers AI free tier (Llama 3.2 3B). No signup, no API key, no credit card, no rate limit for individual users. If usage grows and needs a paid tier, that's an upgrade problem — not a today problem.</p>
     </details>
     <details>
       <summary>Do you store my data?</summary>
-      <p>Every completed brief is stored so its permalink continues to work. No email, no name, no IP is collected. Treat the permalink as public — anyone with the URL can view the brief.</p>
+      <p>v1.0 does not persist briefs yet — that ships Day 56. Right now the brief renders in your browser and you can copy the text before closing the tab. Once permalinks ship tomorrow, every brief gets a stable URL.</p>
     </details>
     <details>
-      <summary>Can I use it for team briefs?</summary>
-      <p>v1.0 is single-user only. Team workspaces, brief comments, and collaboration land in v2. Feature requests welcome — file an issue on GitHub.</p>
+      <summary>Which AI model?</summary>
+      <p>Currently Llama 3.2 3B via Cloudflare Workers AI. Small model, but strong enough for decomposition tasks. If you hit quality issues, tell me via LinkedIn — we can swap to a bigger model on the paid tier post-launch.</p>
     </details>
   </section>
 
   <footer class="footer">
-    Built with Claude · Day 54 of 60 · Ship target Day 60<br>
+    Built with Claude · Day 55 of 60 · Ship target Day 60<br>
     <a href="https://github.com/garvit-mittal04/kickoff" target="_blank">source code</a>
     · <a href="https://github.com/garvit-mittal04/claude-60-days-challenge" target="_blank">daily writeups</a>
     · #60DayClaudeChallenge
   </footer>
-
 </section>
 
-<!-- ============ INTERVIEW VIEW ============ -->
+<!-- INTERVIEW VIEW -->
 <section id="view-interview" class="view">
   <div class="modal-wrap">
     <div class="modal">
       <div class="modal-head">
         <div>
-          <div class="modal-eyebrow">NEW BRIEF · MOCK MODE</div>
+          <div class="modal-eyebrow">NEW BRIEF · LIVE AI</div>
           <div class="modal-title">Kickoff Interview</div>
         </div>
         <button class="btn ghost" onclick="cancelInterview()" style="margin-left:auto;">✕ Close</button>
       </div>
 
-      <div class="progress">
+      <div class="progress" id="progress-wrap" style="display:none;">
         <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-        <div class="progress-text">Q <span id="q-current">1</span> / <span id="q-total">5</span></div>
+        <div class="progress-text">Q <span id="q-current">1</span></div>
       </div>
 
       <div class="question-block">
-        <div class="q-label">CLARIFIER</div>
-        <h2 class="q-text" id="q-text">Loading...</h2>
-        <p class="q-hint" id="q-hint">Type your answer. Specifics beat abstractions. Numbers beat adjectives.</p>
+        <div class="q-label" id="q-label">STARTING</div>
+        <h2 class="q-text" id="q-text">Paste the vague exec question below.</h2>
+        <p class="q-hint" id="q-hint">Copy it exactly as it arrived. Don't rewrite — that's the tool's job.</p>
       </div>
 
-      <textarea id="a-input" placeholder="Your answer..."></textarea>
+      <div class="error-banner" id="error-banner"></div>
+
+      <textarea id="a-input" placeholder="Paste the exec question..."></textarea>
 
       <div class="interview-actions">
-        <button class="btn ghost" onclick="skipQuestion()">Skip</button>
-        <button class="btn primary" onclick="submitAnswer()">Submit answer →</button>
+        <button class="btn ghost" onclick="skipQuestion()" id="skip-btn" style="display:none;">Skip</button>
+        <button class="btn primary" onclick="submitAnswer()" id="submit-btn">Submit →</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ GENERATING VIEW ============ -->
+<!-- GENERATING VIEW -->
 <section id="view-generating" class="view">
   <div class="loading-wrap">
     <div>
       <div class="spinner"></div>
-      <h2>Generating your brief...</h2>
-      <p>Decomposing the ask, ranking hypotheses, mapping data sources.</p>
+      <h2 id="loading-title">Thinking...</h2>
+      <p id="loading-sub">The AI is decomposing your ask, ranking hypotheses, mapping data sources.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ BRIEF VIEW (after generation) ============ -->
+<!-- BRIEF VIEW -->
 <section id="view-brief" class="view">
   <div class="brief-page">
     <div class="brief-head">
@@ -517,16 +491,14 @@ textarea { resize: vertical; }
   </div>
 </section>
 
-<!-- ============ PERMALINK VIEW (read-only) ============ -->
+<!-- PERMALINK VIEW (still uses hardcoded examples until Day 56) -->
 <section id="view-permalink" class="view">
   <div class="permalink-page">
     <div class="permalink-head">
-      <div class="permalink-eyebrow">SHARED BRIEF · <span id="perma-date">JULY 2026</span></div>
+      <div class="permalink-eyebrow">EXAMPLE BRIEF · <span id="perma-date">JUL 2026</span></div>
       <div class="permalink-question" id="perma-question">"..."</div>
     </div>
-
     <div class="brief-content" id="perma-content"></div>
-
     <div class="permalink-actions">
       <button class="btn primary" onclick="startNewBrief()">+ Create your own brief</button>
       <button class="btn" onclick="copyPermalink()">📋 Copy this link</button>
@@ -534,147 +506,107 @@ textarea { resize: vertical; }
   </div>
 </section>
 
-<!-- Footer inside other views -->
-<footer class="footer" id="global-footer" style="display:none;">
-  Built with Claude · Day 54 of 60 · <a href="https://github.com/garvit-mittal04/kickoff" target="_blank">source</a>
-</footer>
-
 <div class="toast" id="toast"></div>
 
 <script>
 /* =====================================================================
-   MOCK DATA
-   Day 54: everything is hardcoded. Day 55 wires the real AI in.
+   API CONFIG
+   Points at the production Cloudflare Worker deployed Day 55.
    ===================================================================== */
 
-const MOCK_QUESTIONS = [
-  {
-    text: "What time window are you comparing against — the same quarter last year, or the immediately preceding quarter?",
-    hint: "Baseline matters more than the drop percentage."
-  },
-  {
-    text: "Which participant segments matter most for this analysis? (e.g., by age group, program type, referral source)",
-    hint: "If you don't know yet, name the segments you can pull from your CRM."
-  },
-  {
-    text: "What changed operationally in the affected window? Staffing, curriculum, funding, external factors?",
-    hint: "The mechanism usually lives here, not in the numbers."
-  },
-  {
-    text: "How do you define 'retention' for this program specifically? Weekly attendance, program completion, re-enrollment?",
-    hint: "Different definitions produce very different drivers."
-  },
-  {
-    text: "What decision does this analysis need to unlock? What will you or the exec do with the answer?",
-    hint: "This determines depth. Discovery scan vs. board-ready memo are very different scopes."
-  }
-];
+const API_BASE = 'https://kickoff-api.garvitm534.workers.dev';
 
-const MOCK_BRIEF = {
-  originalQuestion: "Why is program retention down this quarter?",
-  sections: [
-    { type: 'h2', text: 'The Question' },
-    { type: 'p', text: 'Investigate the drivers of the drop in Fall 2024 cohort program retention, quantify the drop against Q3-2023 baseline, and identify which participant segments are most affected.' },
+/* =====================================================================
+   HARDCODED EXAMPLE BRIEFS (for /b/:slug permalinks)
+   These remain until Day 56 when we add real KV-backed permalinks.
+   ===================================================================== */
 
-    { type: 'h2', text: 'Sub-questions (ranked by likely impact)' },
-    { type: 'ol', items: [
-      '<strong>How much has retention actually dropped?</strong> Baseline vs. current — magnitude and statistical significance.',
-      '<strong>When did the drop start?</strong> Weekly cohort view to identify the inflection point.',
-      '<strong>Which participant segments are driving it?</strong> Age, program type, referral source, prior engagement.',
-      '<strong>What changed operationally in that window?</strong> Curriculum, staffing, external factors (funding, seasonality).',
-      '<strong>Is this within normal variance?</strong> Historical Q3-over-Q3 comparison across 2020-2023.',
-    ]},
-
-    { type: 'h2', text: 'Ranked hypotheses' },
-    { type: 'ul', items: [
-      '<strong>H1 (highest prior):</strong> New curriculum introduced in July disproportionately churned younger participants (16-19 age band).',
-      '<strong>H2:</strong> Loss of the two most experienced program coordinators in Q2 caused execution quality drop.',
-      '<strong>H3:</strong> External seasonality (summer scheduling) is normal but got worse this year due to a specific event.',
-    ]},
-
-    { type: 'h2', text: 'Data sources needed' },
-    { type: 'ul', items: [
-      '<strong>Program CRM</strong> — participant status by week, cohort 2023-Q3 and 2024-Q3.',
-      '<strong>HR system</strong> — staffing changes Q2-Q3 2024.',
-      '<strong>Historical retention</strong> — 2020-2023 by quarter for baseline.',
-      '<strong>Curriculum change log</strong> — what launched in July, participant-level exposure.',
-    ]},
-
-    { type: 'h2', text: 'Executive summary template' },
-    { type: 'callout', label: 'FILL IN AFTER ANALYSIS', text: 'Retention dropped [X]% in Q3 compared to [baseline]. The drop is concentrated in [segment], driven primarily by [hypothesis]. Recommended next step: [action]. Confidence: [level].' },
-
-    { type: 'h2', text: 'Definition of done' },
-    { type: 'p', text: 'A one-page memo answering: (a) how big is the drop, (b) which segment is most affected, (c) which of the three hypotheses is best supported by the data, (d) recommended next step. Delivered by end of week.' },
-
-    { type: 'h2', text: 'Estimated effort' },
-    { type: 'p', text: '<strong>6-10 hours over 3 days.</strong> Day 1: pull + validate data. Day 2: segment + hypothesis testing. Day 3: writeup + review.' },
-  ]
-};
-
-// Example briefs for the permalink /b/:slug routing
 const EXAMPLE_BRIEFS = {
-  'retention': MOCK_BRIEF,
+  'retention': {
+    originalQuestion: "Why is program retention down this quarter?",
+    markdown: `## The Question
+Investigate the drivers of the drop in Fall 2024 cohort program retention, quantify the drop against Q3-2023 baseline, and identify which participant segments are most affected.
+
+## Sub-questions
+1. **How much has retention actually dropped?** Baseline vs. current — magnitude and statistical significance.
+2. **When did the drop start?** Weekly cohort view to identify the inflection point.
+3. **Which participant segments are driving it?** Age, program type, referral source, prior engagement.
+4. **What changed operationally in that window?** Curriculum, staffing, external factors.
+5. **Is this within normal variance?** Historical Q3-over-Q3 comparison across 2020-2023.
+
+## Ranked hypotheses
+- **H1 (highest prior):** New curriculum introduced in July disproportionately churned younger participants (16-19 age band).
+- **H2:** Loss of the two most experienced program coordinators in Q2 caused execution quality drop.
+- **H3:** External seasonality (summer scheduling) is normal but got worse this year.
+
+## Data sources needed
+- **Program CRM** — participant status by week, cohort 2023-Q3 and 2024-Q3.
+- **HR system** — staffing changes Q2-Q3 2024.
+- **Historical retention** — 2020-2023 by quarter for baseline.
+
+## Executive summary template
+Retention dropped [X]% in Q3 compared to [baseline]. The drop is concentrated in [segment], driven primarily by [hypothesis]. Recommended next step: [action]. Confidence: [level].
+
+## Definition of done
+A one-page memo answering: (a) how big is the drop, (b) which segment is most affected, (c) which of the three hypotheses is best supported, (d) recommended next step. Delivered by end of week.
+
+## Estimated effort
+**6-10 hours** over 3 days.`
+  },
   'revenue': {
     originalQuestion: "Why did Q3 revenue miss the forecast?",
-    sections: [
-      { type: 'h2', text: 'The Question' },
-      { type: 'p', text: 'Investigate the drivers of the Q3 revenue shortfall versus forecast. Quantify the gap, identify which product lines / segments / regions underperformed, and separate one-time events from structural drivers.' },
-      { type: 'h2', text: 'Sub-questions' },
-      { type: 'ol', items: [
-        '<strong>What was the actual vs. forecasted gap?</strong> By month, by product line, by region.',
-        '<strong>Which segments underperformed most?</strong> Enterprise vs. mid-market vs. SMB.',
-        '<strong>Was the forecast realistic?</strong> How did the forecast compare to trailing trends?',
-        '<strong>What changed in the pipeline?</strong> Deal slippage, churn, discount pressure.',
-        '<strong>Are the drivers one-time or structural?</strong> Separate seasonal / macro from mechanism-based drops.',
-      ]},
-      { type: 'h2', text: 'Ranked hypotheses' },
-      { type: 'ul', items: [
-        '<strong>H1:</strong> Enterprise segment deal slippage into Q4 accounts for majority of gap.',
-        '<strong>H2:</strong> Increased discount pressure in mid-market compressed ARR.',
-        '<strong>H3:</strong> Forecast was structurally optimistic given prior-quarter trends.',
-      ]},
-      { type: 'h2', text: 'Data sources' },
-      { type: 'ul', items: [
-        '<strong>Salesforce</strong> — closed-won by month vs. quota, deal stage transitions.',
-        '<strong>Finance</strong> — actual revenue recognition, forecast documents.',
-        '<strong>Product analytics</strong> — usage trends by segment for churn risk indicators.',
-      ]},
-      { type: 'h2', text: 'Definition of done' },
-      { type: 'p', text: 'A CFO-ready 2-page memo with the gap decomposition, ranked drivers, and a Q4 course-correction recommendation. Delivered within one week.' },
-      { type: 'h2', text: 'Estimated effort' },
-      { type: 'p', text: '<strong>10-14 hours over 4-5 days.</strong> Requires deep SFDC pull + finance reconciliation.' },
-    ]
+    markdown: `## The Question
+Investigate the drivers of the Q3 revenue shortfall versus forecast. Quantify the gap, identify which product lines / segments / regions underperformed, and separate one-time events from structural drivers.
+
+## Sub-questions
+1. **What was the actual vs. forecasted gap?** By month, by product line, by region.
+2. **Which segments underperformed most?** Enterprise vs. mid-market vs. SMB.
+3. **Was the forecast realistic?** How did the forecast compare to trailing trends?
+4. **What changed in the pipeline?** Deal slippage, churn, discount pressure.
+5. **Are the drivers one-time or structural?** Separate seasonal / macro from mechanism-based drops.
+
+## Ranked hypotheses
+- **H1:** Enterprise segment deal slippage into Q4 accounts for majority of gap.
+- **H2:** Increased discount pressure in mid-market compressed ARR.
+- **H3:** Forecast was structurally optimistic given prior-quarter trends.
+
+## Data sources needed
+- **Salesforce** — closed-won by month vs. quota, deal stage transitions.
+- **Finance** — actual revenue recognition, forecast documents.
+- **Product analytics** — usage trends by segment for churn risk indicators.
+
+## Definition of done
+A CFO-ready 2-page memo with the gap decomposition, ranked drivers, and a Q4 course-correction recommendation. Delivered within one week.
+
+## Estimated effort
+**10-14 hours** over 4-5 days.`
   },
   'launch': {
     originalQuestion: "Should we launch feature X next month?",
-    sections: [
-      { type: 'h2', text: 'The Question' },
-      { type: 'p', text: 'Determine whether the proposed launch timeline for feature X is defensible given current readiness signals, market conditions, and downstream commitments. Produce a recommendation with confidence level.' },
-      { type: 'h2', text: 'Sub-questions' },
-      { type: 'ol', items: [
-        '<strong>Is the feature technically ready?</strong> Beta metrics, bug rate, load-test performance.',
-        '<strong>Is the market ready?</strong> Competitive positioning, customer demand signals.',
-        '<strong>What are the risks of delay vs. launch?</strong> Opportunity cost vs. reputation risk.',
-        '<strong>What downstream commitments exist?</strong> Marketing, sales enablement, support.',
-        '<strong>What does the beta cohort say?</strong> NPS, retention, feature-specific engagement.',
-      ]},
-      { type: 'h2', text: 'Ranked hypotheses' },
-      { type: 'ul', items: [
-        '<strong>H1:</strong> Beta metrics support launch; delay would cede market position.',
-        '<strong>H2:</strong> Bug rate is too high for GA; recommend 2-week delay.',
-        '<strong>H3:</strong> Feature is fine but positioning needs rework before broad launch.',
-      ]},
-      { type: 'h2', text: 'Data sources' },
-      { type: 'ul', items: [
-        '<strong>Product analytics</strong> — beta cohort engagement, feature-specific metrics.',
-        '<strong>Support tickets</strong> — bug reports by severity, time-to-resolution.',
-        '<strong>Sales feedback</strong> — customer objections, competitor mentions.',
-      ]},
-      { type: 'h2', text: 'Definition of done' },
-      { type: 'p', text: 'A go/no-go recommendation with confidence level (H/M/L) and a specific alternative if no-go. Delivered before the launch review meeting.' },
-      { type: 'h2', text: 'Estimated effort' },
-      { type: 'p', text: '<strong>4-6 hours over 2 days.</strong> Requires stakeholder interviews.' },
-    ]
+    markdown: `## The Question
+Determine whether the proposed launch timeline for feature X is defensible given current readiness signals, market conditions, and downstream commitments. Produce a recommendation with confidence level.
+
+## Sub-questions
+1. **Is the feature technically ready?** Beta metrics, bug rate, load-test performance.
+2. **Is the market ready?** Competitive positioning, customer demand signals.
+3. **What are the risks of delay vs. launch?** Opportunity cost vs. reputation risk.
+4. **What downstream commitments exist?** Marketing, sales enablement, support.
+
+## Ranked hypotheses
+- **H1:** Beta metrics support launch; delay would cede market position.
+- **H2:** Bug rate is too high for GA; recommend 2-week delay.
+- **H3:** Feature is fine but positioning needs rework before broad launch.
+
+## Data sources needed
+- **Product analytics** — beta cohort engagement, feature-specific metrics.
+- **Support tickets** — bug reports by severity, time-to-resolution.
+- **Sales feedback** — customer objections, competitor mentions.
+
+## Definition of done
+A go/no-go recommendation with confidence level (H/M/L) and a specific alternative if no-go.
+
+## Estimated effort
+**4-6 hours** over 2 days.`
   }
 };
 
@@ -684,9 +616,11 @@ const EXAMPLE_BRIEFS = {
 
 const STATE = {
   view: 'landing',
-  qIdx: 0,
-  answers: [],
+  originalQuestion: null,
+  transcript: [],           // Array<{role: 'model'|'analyst', text: string}>
+  currentClarifier: null,
   currentSlug: null,
+  briefMarkdown: null,
 };
 
 /* =====================================================================
@@ -704,102 +638,170 @@ function switchView(name) {
   window.scrollTo({ top: 0, behavior: 'auto' });
 }
 
-/* =====================================================================
-   TOAST
-   ===================================================================== */
-
 let toastTimer;
 function toast(msg, kind) {
   const t = $('#toast');
   t.textContent = msg;
   t.className = 'toast show ' + (kind || '');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function showError(msg) {
+  const el = $('#error-banner');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+
+function clearError() {
+  $('#error-banner').classList.remove('show');
+}
+
+function setSubmitBusy(busy) {
+  const btn = $('#submit-btn');
+  btn.disabled = busy;
+  btn.textContent = busy ? 'Sending…' : 'Submit →';
 }
 
 /* =====================================================================
-   INTERVIEW FLOW
+   INTERVIEW FLOW — LIVE AI
    ===================================================================== */
 
 function startInterview() {
-  STATE.qIdx = 0;
-  STATE.answers = [];
+  STATE.originalQuestion = null;
+  STATE.transcript = [];
+  STATE.currentClarifier = null;
   switchView('interview');
-  loadQuestion();
-}
 
-function loadQuestion() {
-  const q = MOCK_QUESTIONS[STATE.qIdx];
-  if (!q) return generateBrief();
-  $('#q-text').textContent = q.text;
-  $('#q-hint').textContent = q.hint;
-  $('#q-current').textContent = STATE.qIdx + 1;
-  $('#q-total').textContent = MOCK_QUESTIONS.length;
-  $('#progress-fill').style.width = ((STATE.qIdx / MOCK_QUESTIONS.length) * 100) + '%';
+  $('#q-label').textContent = 'STARTING';
+  $('#q-text').textContent = 'Paste the vague exec question below.';
+  $('#q-hint').textContent = "Copy it exactly as it arrived. Don't rewrite — that's the tool's job.";
   $('#a-input').value = '';
+  $('#a-input').placeholder = 'Paste the exec question...';
+  $('#progress-wrap').style.display = 'none';
+  $('#skip-btn').style.display = 'none';
+  clearError();
   $('#a-input').focus();
 }
 
-function submitAnswer() {
+async function submitAnswer() {
+  clearError();
   const answer = $('#a-input').value.trim();
   if (answer.length < 3) {
-    toast('Give at least a short answer or use Skip.');
+    showError('Give at least a short answer, or use Skip.');
     return;
   }
-  STATE.answers.push({ q: MOCK_QUESTIONS[STATE.qIdx].text, a: answer });
-  STATE.qIdx++;
-  if (STATE.qIdx >= MOCK_QUESTIONS.length) {
-    generateBrief();
+
+  // First submission: the exec question itself.
+  if (!STATE.originalQuestion) {
+    if (answer.length < 10) {
+      showError('The exec question should be at least a full sentence.');
+      return;
+    }
+    STATE.originalQuestion = answer;
+    STATE.transcript = [];
   } else {
-    loadQuestion();
+    // Subsequent: the answer to the current clarifier.
+    STATE.transcript.push({ role: 'model', text: STATE.currentClarifier });
+    STATE.transcript.push({ role: 'analyst', text: answer });
+  }
+
+  await fetchNextClarifier();
+}
+
+async function skipQuestion() {
+  if (!STATE.originalQuestion || !STATE.currentClarifier) return;
+  STATE.transcript.push({ role: 'model', text: STATE.currentClarifier });
+  STATE.transcript.push({ role: 'analyst', text: '(skipped)' });
+  await fetchNextClarifier();
+}
+
+async function fetchNextClarifier() {
+  setSubmitBusy(true);
+  clearError();
+  try {
+    const response = await fetch(`${API_BASE}/api/interview`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        originalQuestion: STATE.originalQuestion,
+        transcript: STATE.transcript,
+      }),
+    });
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.message || `Server returned ${response.status}`);
+    }
+    const data = await response.json();
+
+    if (data.isReady) {
+      await generateBrief();
+      return;
+    }
+
+    STATE.currentClarifier = data.clarifier;
+    // Update UI for the new clarifier
+    const clarifierNum = data.turnNumber;
+    $('#q-label').textContent = data.fallback ? 'CLARIFIER · FALLBACK' : 'CLARIFIER';
+    $('#q-text').textContent = data.clarifier;
+    $('#q-hint').textContent = 'Type your answer. Specifics beat abstractions. Numbers beat adjectives.';
+    $('#a-input').value = '';
+    $('#a-input').placeholder = 'Your answer...';
+    $('#progress-wrap').style.display = 'flex';
+    $('#q-current').textContent = clarifierNum;
+    $('#progress-fill').style.width = Math.min(clarifierNum * 20, 90) + '%';
+    $('#skip-btn').style.display = '';
+    $('#a-input').focus();
+  } catch (err) {
+    showError('Could not reach the AI. ' + (err.message || 'Please try again.'));
+  } finally {
+    setSubmitBusy(false);
   }
 }
 
-function skipQuestion() {
-  STATE.answers.push({ q: MOCK_QUESTIONS[STATE.qIdx].text, a: '(skipped)' });
-  STATE.qIdx++;
-  if (STATE.qIdx >= MOCK_QUESTIONS.length) {
-    generateBrief();
-  } else {
-    loadQuestion();
+async function generateBrief() {
+  switchView('generating');
+  $('#loading-title').textContent = 'Generating your brief...';
+  $('#loading-sub').textContent = 'Decomposing the ask, ranking hypotheses, mapping data sources. Takes 10-30 seconds.';
+  try {
+    const response = await fetch(`${API_BASE}/api/brief`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        originalQuestion: STATE.originalQuestion,
+        transcript: STATE.transcript,
+      }),
+    });
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.message || 'Brief generation failed');
+    }
+    const data = await response.json();
+    STATE.briefMarkdown = data.briefMarkdown;
+    renderMarkdownInto(data.briefMarkdown, 'brief-content');
+    const slug = generateSlug();
+    STATE.currentSlug = slug;
+    // Note: Day 55 doesn't yet persist briefs, so this permalink URL is illustrative
+    $('#permalink-url').value = window.location.origin + '/b/' + slug + ' (permalinks land Day 56)';
+    const now = new Date();
+    $('#brief-timestamp').textContent = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
+    switchView('brief');
+  } catch (err) {
+    switchView('interview');
+    showError('Could not generate the brief. ' + (err.message || 'Please try again.'));
   }
 }
 
 function cancelInterview() {
-  if (STATE.answers.length && !confirm('Cancel and lose your answers?')) return;
+  if (STATE.originalQuestion && !confirm('Cancel and lose your progress?')) return;
+  STATE.originalQuestion = null;
+  STATE.transcript = [];
+  STATE.currentClarifier = null;
   switchView('landing');
-}
-
-function generateBrief() {
-  switchView('generating');
-  // Simulate generation delay for realism
-  setTimeout(() => {
-    const slug = generateSlug();
-    STATE.currentSlug = slug;
-    renderBrief(MOCK_BRIEF, 'brief-content');
-    $('#permalink-url').value = window.location.origin + '/b/' + slug;
-    const now = new Date();
-    $('#brief-timestamp').textContent = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
-    switchView('brief');
-  }, 1400);
 }
 
 function generateSlug() {
   return Math.random().toString(36).substring(2, 10);
-}
-
-function renderBrief(brief, containerId) {
-  const el = document.getElementById(containerId);
-  const html = brief.sections.map(s => {
-    if (s.type === 'h2') return '<h2>' + s.text + '</h2>';
-    if (s.type === 'h3') return '<h3>' + s.text + '</h3>';
-    if (s.type === 'p') return '<p>' + s.text + '</p>';
-    if (s.type === 'ul') return '<ul>' + s.items.map(i => '<li>' + i + '</li>').join('') + '</ul>';
-    if (s.type === 'ol') return '<ol>' + s.items.map(i => '<li>' + i + '</li>').join('') + '</ol>';
-    if (s.type === 'callout') return '<div class="callout"><strong>' + s.label + '</strong><br>' + s.text + '</div>';
-    return '';
-  }).join('');
-  el.innerHTML = html;
 }
 
 function startNewBrief() {
@@ -808,12 +810,73 @@ function startNewBrief() {
 }
 
 /* =====================================================================
+   MINIMAL MARKDOWN RENDERER
+   Handles: ## H2, ### H3, - lists, 1. numbered lists, **bold**, *em*, paragraphs
+   ===================================================================== */
+
+function renderMarkdownInto(md, containerId) {
+  if (!md) {
+    document.getElementById(containerId).innerHTML = '<p>No brief content returned.</p>';
+    return;
+  }
+  const lines = md.split('\n');
+  const out = [];
+  let inUl = false, inOl = false;
+
+  const closeLists = () => {
+    if (inUl) { out.push('</ul>'); inUl = false; }
+    if (inOl) { out.push('</ol>'); inOl = false; }
+  };
+
+  for (let raw of lines) {
+    const line = raw.trimEnd();
+    if (!line.trim()) { closeLists(); continue; }
+
+    if (/^## /.test(line)) { closeLists(); out.push('<h2>' + inline(line.slice(3)) + '</h2>'); continue; }
+    if (/^### /.test(line)) { closeLists(); out.push('<h3>' + inline(line.slice(4)) + '</h3>'); continue; }
+    if (/^#{4,} /.test(line)) { closeLists(); out.push('<h3>' + inline(line.replace(/^#+\s*/, '')) + '</h3>'); continue; }
+
+    const ol = line.match(/^\s*(\d+)\.\s+(.*)$/);
+    if (ol) {
+      if (!inOl) { closeLists(); out.push('<ol>'); inOl = true; }
+      out.push('<li>' + inline(ol[2]) + '</li>');
+      continue;
+    }
+    const ul = line.match(/^\s*[-*]\s+(.*)$/);
+    if (ul) {
+      if (!inUl) { closeLists(); out.push('<ul>'); inUl = true; }
+      out.push('<li>' + inline(ul[1]) + '</li>');
+      continue;
+    }
+
+    // Paragraph
+    closeLists();
+    out.push('<p>' + inline(line) + '</p>');
+  }
+  closeLists();
+  document.getElementById(containerId).innerHTML = out.join('');
+}
+
+function inline(text) {
+  // Escape HTML first
+  let t = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+  // Bold **text**
+  t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  // Italic *text* (single asterisks)
+  t = t.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
+  return t;
+}
+
+/* =====================================================================
    SHARE ACTIONS
    ===================================================================== */
 
 function copyPermalink() {
   const url = $('#permalink-url').value || window.location.href;
-  navigator.clipboard.writeText(url).then(() => toast('Link copied to clipboard', 'success'));
+  navigator.clipboard.writeText(url).then(() => toast('Link copied', 'success'));
 }
 
 function shareSlack() {
@@ -827,7 +890,7 @@ function shareSlack() {
 function shareEmail() {
   const url = $('#permalink-url').value || window.location.href;
   const subject = encodeURIComponent('Kickoff brief for your review');
-  const body = encodeURIComponent('Hi,\n\nI ran the exec question through Kickoff. Here\'s the structured brief for your sign-off before I start the analysis:\n\n' + url + '\n\nLet me know if the scope looks right or if you\'d like me to adjust before I dig in.\n');
+  const body = encodeURIComponent('Hi,\n\nI ran the exec question through Kickoff. Structured brief for your sign-off before I start the analysis:\n\n' + url + '\n\nLet me know if the scope looks right or if you\'d like me to adjust before I dig in.\n');
   window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
 }
 
@@ -846,14 +909,13 @@ function checkURL() {
 function showPermalink(slug) {
   const brief = EXAMPLE_BRIEFS[slug];
   if (!brief) {
-    // Unknown slug — fall back to landing with a note
     switchView('landing');
     setTimeout(() => toast('Brief not found — try creating a new one.'), 400);
     return;
   }
   switchView('permalink');
   $('#perma-question').textContent = '"' + brief.originalQuestion + '"';
-  renderBrief(brief, 'perma-content');
+  renderMarkdownInto(brief.markdown, 'perma-content');
   const now = new Date();
   $('#perma-date').textContent = now.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }).toUpperCase();
 }
@@ -864,8 +926,6 @@ function showPermalink(slug) {
 
 document.addEventListener('DOMContentLoaded', checkURL);
 window.addEventListener('popstate', checkURL);
-
-// Also check immediately in case DOMContentLoaded already fired
 checkURL();
 </script>
 </body>
