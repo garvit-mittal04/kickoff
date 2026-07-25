@@ -2,19 +2,24 @@
  * index.ts — Kickoff API Worker entry point
  *
  * Routes:
- *   GET  /                 → API info
- *   GET  /api/health       → health check
- *   POST /api/interview    → adaptive clarifier Q&A
- *   POST /api/brief        → generate the structured brief
- *   OPTIONS *              → CORS preflight
+ *   GET  /                  → API info
+ *   GET  /api/health        → health check
+ *   POST /api/interview     → adaptive clarifier Q&A
+ *   POST /api/brief         → generate the structured brief
+ *   POST /api/save          → persist brief, return slug
+ *   GET  /api/brief/:slug   → retrieve a saved brief
+ *   OPTIONS *               → CORS preflight
  */
 
 import { handleInterview } from './endpoints/interview';
 import { handleBrief } from './endpoints/brief';
+import { handleSave } from './endpoints/save';
+import { handleRetrieve } from './endpoints/retrieve';
 import type { AIBinding } from './lib/ai';
 
 export interface Env {
   AI: AIBinding;
+  KICKOFF_BRIEFS: KVNamespace;
 }
 
 const CORS_HEADERS = {
@@ -48,9 +53,20 @@ export default {
       return handleInterview(request, env);
     }
 
-    // POST /api/brief
+    // POST /api/brief  (generate)
     if (url.pathname === '/api/brief' && request.method === 'POST') {
       return handleBrief(request, env);
+    }
+
+    // POST /api/save  (persist to KV)
+    if (url.pathname === '/api/save' && request.method === 'POST') {
+      return handleSave(request, env);
+    }
+
+    // GET /api/brief/:slug  (retrieve from KV)
+    const retrieveMatch = url.pathname.match(/^\/api\/brief\/([a-z0-9-]{3,20})$/i);
+    if (retrieveMatch && request.method === 'GET') {
+      return handleRetrieve(retrieveMatch[1].toLowerCase(), env);
     }
 
     // GET /api/health
@@ -58,8 +74,9 @@ export default {
       return json({
         status: 'ok',
         service: 'kickoff-api',
-        version: '1.1',
-        model: '@cf/meta/llama-3.3-70b-instruct-fp8-fast',
+        version: '1.2',
+        model: '@cf/meta/llama-3.2-3b-instruct',
+        endpoints_live: 5,
         timestamp: new Date().toISOString(),
       });
     }
@@ -68,14 +85,14 @@ export default {
     if (url.pathname === '/' || url.pathname === '') {
       return json({
         service: 'Kickoff API',
-        version: '1.1',
+        version: '1.2',
         tagline: 'The analysis brief you write before you write any SQL.',
         endpoints: [
           'GET  /api/health',
           'POST /api/interview  { originalQuestion, transcript }',
           'POST /api/brief      { originalQuestion, transcript }',
-          'POST /api/save       (coming Day 56)',
-          'GET  /api/brief/:slug (coming Day 56)',
+          'POST /api/save       { originalQuestion, briefMarkdown, slugHint? }',
+          'GET  /api/brief/:slug',
         ],
       });
     }

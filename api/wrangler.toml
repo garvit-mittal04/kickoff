@@ -1,13 +1,13 @@
 name = "kickoff-api"
 main = "src/index.ts"
-compatibility_date = "2026-07-24"
+compatibility_date = "2026-07-25"
 compatibility_flags = ["nodejs_compat"]
 
-# Cloudflare Workers AI — free tier, ~10k neurons/day
+# Cloudflare Workers AI — free tier
 [ai]
 binding = "AI"
 
-# KV namespaces will be added Day 56 for permanent brief storage
-# [[kv_namespaces]]
-# binding = "KICKOFF_BRIEFS"
-# id = "<id>"
+# Cloudflare KV — free tier: 100k reads/day, 1k writes/day
+[[kv_namespaces]]
+binding = "KICKOFF_BRIEFS"
+id = "56cc129f60d747f5955930b0b84607e4"
