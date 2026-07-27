@@ -6,8 +6,6 @@
 <title>Kickoff — the analysis brief you write before you write any SQL</title>
 <meta name="description" content="A scoping tool for analysts and ops pros. Turn any vague exec question into a shareable brief in five minutes. Free, no signup, no API key.">
 <meta name="theme-color" content="#0b0d13">
-
-<!-- Open Graph / social previews -->
 <meta property="og:title" content="Kickoff — the brief you write before you write SQL">
 <meta property="og:description" content="Turn any vague exec question into a shareable analysis brief in five minutes. Free, no signup.">
 <meta property="og:type" content="website">
@@ -19,33 +17,18 @@
 <meta name="twitter:title" content="Kickoff — the brief you write before you write SQL">
 <meta name="twitter:description" content="Turn any vague exec question into a shareable analysis brief in five minutes.">
 <meta name="twitter:image" content="https://kickoff-5r0.pages.dev/og-image.png">
-
-<!-- Favicon (inline SVG, no extra request) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c3aed'/%3E%3Cstop offset='100%25' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='900' text-anchor='middle' fill='%230b0d13'%3EK%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/favicon-32.png">
-
 <style>
 :root {
-  --bg: #0b0d13;
-  --bg-elev: #12151e;
-  --bg-elev2: #171b26;
-  --bg-elev3: #1c202b;
-  --border: #242938;
-  --border-strong: #323847;
-  --text: #f4f6fa;
-  --text-muted: #a4acbd;
-  --text-dim: #6b7385;
-  --accent: #7c3aed;
-  --accent-2: #22d3ee;
-  --accent-light: #c4b5fd;
-  --success: #10b981;
-  --warn: #f59e0b;
-  --danger: #ef4444;
-  --shadow: 0 8px 32px rgba(0,0,0,0.4);
-  --shadow-lg: 0 20px 50px rgba(0,0,0,0.5);
-  --radius: 8px;
-  --radius-lg: 12px;
+  --bg: #0b0d13; --bg-elev: #12151e; --bg-elev2: #171b26; --bg-elev3: #1c202b;
+  --border: #242938; --border-strong: #323847;
+  --text: #f4f6fa; --text-muted: #a4acbd; --text-dim: #6b7385;
+  --accent: #7c3aed; --accent-2: #22d3ee; --accent-light: #c4b5fd;
+  --success: #10b981; --warn: #f59e0b; --danger: #ef4444;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4); --shadow-lg: 0 20px 50px rgba(0,0,0,0.5);
+  --radius: 8px; --radius-lg: 12px;
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
@@ -53,61 +36,21 @@
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
-  font-size: 15px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
-  text-rendering: optimizeLegibility;
-}
+body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; min-height: 100vh; text-rendering: optimizeLegibility; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; font-size: inherit; }
-
-/* Skip link for accessibility */
-.skip-link {
-  position: absolute; left: -9999px; top: 0;
-  background: var(--accent); color: white;
-  padding: 12px 16px; border-radius: 0 0 6px 0;
-  z-index: 999; font-weight: 600; font-size: 14px;
-}
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+.skip-link { position: absolute; left: -9999px; top: 0; background: var(--accent); color: white; padding: 12px 16px; border-radius: 0 0 6px 0; z-index: 999; font-weight: 600; font-size: 14px; }
 .skip-link:focus { left: 0; }
-
-/* Accessibility — visible focus for keyboard users only */
 :focus { outline: none; }
-:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-  border-radius: 4px;
-}
-
-input, textarea, select {
-  font-family: inherit; font-size: inherit; color: var(--text); background: var(--bg-elev);
-  border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  width: 100%;
-}
+:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 4px; }
+input, textarea, select { font-family: inherit; font-size: inherit; color: var(--text); background: var(--bg-elev); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; outline: none; transition: border-color 0.15s, box-shadow 0.15s; width: 100%; }
 input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: var(--focus-ring); }
 textarea { resize: vertical; }
 
-/* HEADER */
-.header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(11,13,19,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 24px; display: flex; align-items: center; gap: 20px;
-}
+.header { position: sticky; top: 0; z-index: 50; background: rgba(11,13,19,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 24px; display: flex; align-items: center; gap: 20px; }
 .brand { display: flex; align-items: center; gap: 12px; }
-.brand-logo {
-  width: 34px; height: 34px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  border-radius: 8px; display: grid; place-items: center;
-  font-family: var(--font-serif); font-size: 18px; font-weight: 900; color: var(--bg);
-  transition: transform 0.2s;
-}
+.brand-logo { width: 34px; height: 34px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-radius: 8px; display: grid; place-items: center; font-family: var(--font-serif); font-size: 18px; font-weight: 900; color: var(--bg); transition: transform 0.2s; }
 .brand:hover .brand-logo { transform: rotate(-4deg) scale(1.05); }
 .brand-name { font-weight: 700; font-size: 15px; letter-spacing: -0.3px; line-height: 1.1; }
 .brand-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 1px; margin-top: 2px; }
@@ -116,27 +59,14 @@ textarea { resize: vertical; }
 .nav a:hover { color: var(--text); }
 @media (max-width: 640px) { .nav { display: none; } }
 
-/* VIEWS */
 .view { display: none; }
 .view.active { display: block; animation: fadeIn 0.25s ease-out; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-/* BUTTONS */
-.btn {
-  padding: 10px 18px; border-radius: 8px;
-  background: var(--bg-elev); border: 1px solid var(--border);
-  color: var(--text); font-weight: 500; font-size: 14px;
-  transition: all 0.15s;
-  display: inline-flex; align-items: center; gap: 8px;
-  text-align: center; justify-content: center;
-  user-select: none;
-}
+.btn { padding: 10px 18px; border-radius: 8px; background: var(--bg-elev); border: 1px solid var(--border); color: var(--text); font-weight: 500; font-size: 14px; transition: all 0.15s; display: inline-flex; align-items: center; gap: 8px; text-align: center; justify-content: center; user-select: none; }
 .btn:hover { border-color: var(--border-strong); background: var(--bg-elev2); }
 .btn:active { transform: scale(0.98); }
-.btn.primary {
-  background: linear-gradient(135deg, var(--accent), #6d28d9); border-color: transparent; color: white;
-  box-shadow: 0 4px 14px rgba(124,58,237,0.35);
-}
+.btn.primary { background: linear-gradient(135deg, var(--accent), #6d28d9); border-color: transparent; color: white; box-shadow: 0 4px 14px rgba(124,58,237,0.35); }
 .btn.primary:hover { filter: brightness(1.1); box-shadow: 0 6px 20px rgba(124,58,237,0.45); }
 .btn.primary:disabled { opacity: 0.5; cursor: not-allowed; }
 .btn.primary:disabled:hover { box-shadow: 0 4px 14px rgba(124,58,237,0.35); filter: none; }
@@ -149,243 +79,115 @@ textarea { resize: vertical; }
 .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
 .hero { text-align: center; padding: 88px 24px 60px; }
-.hero-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-mono); font-size: 11px;
-  color: var(--accent-light); letter-spacing: 3px; padding: 6px 14px;
-  border: 1px solid var(--border); border-radius: 20px;
-  margin-bottom: 28px; background: rgba(124,58,237,0.08);
-}
-.hero-tag::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--success);
-  box-shadow: 0 0 8px var(--success);
-  animation: pulse 2s ease-in-out infinite;
-}
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--accent-light); letter-spacing: 3px; padding: 6px 14px; border: 1px solid var(--border); border-radius: 20px; margin-bottom: 28px; background: rgba(124,58,237,0.08); }
+.hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success); animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: 0.4; } }
-.hero h1 {
-  font-family: var(--font-serif); font-size: clamp(40px, 7vw, 68px);
-  font-weight: 800; letter-spacing: -1.5px; margin: 0 0 20px; line-height: 1.05;
-}
+.hero h1 { font-family: var(--font-serif); font-size: clamp(40px, 7vw, 68px); font-weight: 800; letter-spacing: -1.5px; margin: 0 0 20px; line-height: 1.05; }
 .hero h1 em { color: var(--accent); font-style: italic; }
-.hero p {
-  font-size: 18px; color: var(--text-muted); max-width: 620px;
-  margin: 0 auto 36px; line-height: 1.55;
-}
+.hero p { font-size: 18px; color: var(--text-muted); max-width: 620px; margin: 0 auto 36px; line-height: 1.55; }
 .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
 .section { padding: 56px 24px; max-width: 960px; margin: 0 auto; }
-.section-eyebrow {
-  font-family: var(--font-mono); font-size: 11px;
-  color: var(--accent-2); letter-spacing: 3px; font-weight: 700;
-  margin: 0 0 20px; text-align: center;
-}
+.section-eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--accent-2); letter-spacing: 3px; font-weight: 700; margin: 0 0 20px; text-align: center; }
 
 .three-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 @media (max-width: 720px) { .three-cols { grid-template-columns: 1fr; } }
-.step {
-  background: var(--bg-elev); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 26px 24px;
-  transition: transform 0.15s, border-color 0.15s;
-}
+.step { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px 24px; transition: transform 0.15s, border-color 0.15s; }
 .step:hover { transform: translateY(-2px); border-color: var(--border-strong); }
-.step-num {
-  font-family: var(--font-mono); font-size: 11px; color: var(--accent-2);
-  letter-spacing: 3px; font-weight: 700; margin-bottom: 12px;
-}
+.step-num { font-family: var(--font-mono); font-size: 11px; color: var(--accent-2); letter-spacing: 3px; font-weight: 700; margin-bottom: 12px; }
 .step h3 { margin: 0 0 8px; font-family: var(--font-serif); font-size: 20px; letter-spacing: -0.3px; }
 .step p { margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.55; }
 
 .examples-grid { display: grid; gap: 12px; }
-.example-card {
-  background: var(--bg-elev); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 22px 26px;
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  cursor: pointer; transition: all 0.15s;
-  position: relative;
-}
+.example-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; transition: all 0.15s; }
 .example-card:hover { border-color: var(--accent); background: var(--bg-elev2); transform: translateX(2px); }
 .example-card:hover .example-arrow { color: var(--accent); transform: translateX(4px); }
 .example-q { font-family: var(--font-serif); font-size: 17px; font-style: italic; color: var(--text); }
 .example-meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 2px; white-space: nowrap; }
 .example-arrow { color: var(--text-dim); font-family: var(--font-mono); transition: all 0.15s; display: inline-block; }
-@media (max-width: 640px) {
-  .example-card { flex-direction: column; align-items: flex-start; }
-  .example-q { font-size: 15px; }
-}
+@media (max-width: 640px) { .example-card { flex-direction: column; align-items: flex-start; } .example-q { font-size: 15px; } }
 
-.faq details {
-  background: var(--bg-elev); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 16px 20px; margin-bottom: 8px;
-  transition: background 0.15s;
-}
+.faq details { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 8px; transition: background 0.15s; }
 .faq details[open] { background: var(--bg-elev2); border-color: var(--border-strong); }
-.faq summary {
-  font-weight: 600; cursor: pointer; list-style: none;
-  display: flex; align-items: center; gap: 12px; font-size: 15px;
-}
-.faq summary::before {
-  content: '+'; font-family: var(--font-mono); font-size: 20px;
-  color: var(--accent); width: 20px; transition: transform 0.2s;
-  display: inline-block;
-}
+.faq summary { font-weight: 600; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 12px; font-size: 15px; }
+.faq summary::before { content: '+'; font-family: var(--font-mono); font-size: 20px; color: var(--accent); width: 20px; transition: transform 0.2s; display: inline-block; }
 .faq details[open] summary::before { content: '−'; transform: rotate(180deg); }
 .faq p { margin: 12px 0 0 32px; color: var(--text-muted); font-size: 14px; line-height: 1.6; }
 
-/* INTERVIEW MODAL */
-.modal-wrap {
-  min-height: calc(100vh - 66px); display: grid; place-items: center; padding: 40px 20px;
-}
-.modal {
-  background: var(--bg-elev); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 32px 36px;
-  max-width: 640px; width: 100%; box-shadow: var(--shadow-lg);
-  animation: modalIn 0.25s ease-out;
-}
+.modal-wrap { min-height: calc(100vh - 66px); display: grid; place-items: center; padding: 40px 20px; }
+.modal { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px 36px; max-width: 640px; width: 100%; box-shadow: var(--shadow-lg); animation: modalIn 0.25s ease-out; }
 @keyframes modalIn { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-@media (max-width: 640px) {
-  .modal { padding: 24px 20px; }
-}
-.modal-head {
-  display: flex; align-items: flex-start; gap: 16px;
-  padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px;
-}
-.modal-eyebrow {
-  font-family: var(--font-mono); font-size: 10px; color: var(--accent-2);
-  letter-spacing: 3px; font-weight: 700; margin-bottom: 4px;
-}
+@media (max-width: 640px) { .modal { padding: 24px 20px; } }
+.modal-head { display: flex; align-items: flex-start; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+.modal-eyebrow { font-family: var(--font-mono); font-size: 10px; color: var(--accent-2); letter-spacing: 3px; font-weight: 700; margin-bottom: 4px; }
 .modal-title { font-family: var(--font-serif); font-size: 20px; letter-spacing: -0.3px; }
 
-.progress {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
-}
-.progress-track {
-  flex: 1; height: 6px; background: var(--bg-elev3);
-  border-radius: 3px; overflow: hidden;
-}
-.progress-fill {
-  height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1); width: 0%;
-}
+.progress { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.progress-track { flex: 1; height: 6px; background: var(--bg-elev3); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1); width: 0%; }
 .progress-text { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 2px; }
 
 .question-block { margin-bottom: 16px; }
-.q-label {
-  display: inline-flex; gap: 8px; font-family: var(--font-mono); font-size: 10px;
-  padding: 4px 10px; background: rgba(124,58,237,0.15); border-radius: 4px;
-  color: var(--accent-light); letter-spacing: 3px; font-weight: 700; margin-bottom: 12px;
-}
-.q-text {
-  font-family: var(--font-serif); font-size: 22px; line-height: 1.4;
-  margin: 0 0 8px; letter-spacing: -0.3px;
-}
+.q-label { display: inline-flex; gap: 8px; font-family: var(--font-mono); font-size: 10px; padding: 4px 10px; background: rgba(124,58,237,0.15); border-radius: 4px; color: var(--accent-light); letter-spacing: 3px; font-weight: 700; margin-bottom: 12px; }
+.q-text { font-family: var(--font-serif); font-size: 22px; line-height: 1.4; margin: 0 0 8px; letter-spacing: -0.3px; }
 .q-hint { font-size: 13px; color: var(--text-dim); margin: 0 0 16px; }
 
 #a-input { min-height: 120px; font-family: var(--font); font-size: 15px; margin-bottom: 16px; }
 
 .interview-actions { display: flex; gap: 8px; align-items: center; }
 .interview-actions .btn.primary { margin-left: auto; }
-.kbd-hint {
-  font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);
-  margin-right: auto;
-}
-.kbd-hint kbd {
-  background: var(--bg-elev3); padding: 1px 5px; border-radius: 3px;
-  border: 1px solid var(--border); font-size: 10px;
-}
+.kbd-hint { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); margin-right: auto; }
+.kbd-hint kbd { background: var(--bg-elev3); padding: 1px 5px; border-radius: 3px; border: 1px solid var(--border); font-size: 10px; }
+@media (max-width: 480px) { .kbd-hint { display: none; } }
 
-.error-banner {
-  background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
-  color: var(--danger); padding: 10px 14px; border-radius: 6px;
-  font-size: 13px; margin-bottom: 12px; display: none;
-  animation: shake 0.3s;
-}
+.error-banner { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: var(--danger); padding: 10px 14px; border-radius: 6px; font-size: 13px; margin-bottom: 12px; display: none; animation: shake 0.3s; }
 .error-banner.show { display: block; }
 @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+.error-banner.retryable::after { content: ''; }
+.error-banner .retry-btn { margin-left: 8px; text-decoration: underline; cursor: pointer; font-weight: 600; }
 
-/* LOADING */
-.loading-wrap {
-  min-height: calc(100vh - 66px); display: grid; place-items: center;
-  padding: 40px 20px; text-align: center;
-}
+.loading-wrap { min-height: calc(100vh - 66px); display: grid; place-items: center; padding: 40px 20px; text-align: center; }
 .loading-wrap > div { max-width: 480px; }
-.spinner {
-  width: 48px; height: 48px; margin: 0 auto 24px;
-  border: 3px solid var(--border); border-top-color: var(--accent);
-  border-radius: 50%; animation: spin 0.9s linear infinite;
-}
+.spinner { width: 48px; height: 48px; margin: 0 auto 24px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.9s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .loading-wrap h2 { font-family: var(--font-serif); font-size: 28px; margin: 0 0 8px; letter-spacing: -0.4px; transition: opacity 0.3s; }
-.loading-wrap p { color: var(--text-muted); margin: 0; transition: opacity 0.3s; }
+.loading-wrap p { color: var(--text-muted); margin: 0 0 24px; transition: opacity 0.3s; }
 
-/* BRIEF VIEW */
 .brief-page { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
 .brief-head { text-align: center; margin-bottom: 32px; }
-.brief-eyebrow {
-  font-family: var(--font-mono); font-size: 11px; color: var(--accent-2);
-  letter-spacing: 3px; font-weight: 700; margin-bottom: 12px;
-}
-.brief-head h2 {
-  font-family: var(--font-serif); font-size: 40px; margin: 0;
-  letter-spacing: -0.8px; font-weight: 700;
-}
+.brief-eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--accent-2); letter-spacing: 3px; font-weight: 700; margin-bottom: 12px; }
+.brief-head h2 { font-family: var(--font-serif); font-size: 40px; margin: 0; letter-spacing: -0.8px; font-weight: 700; }
 
-.permalink-box {
-  display: flex; gap: 8px; align-items: center; margin-bottom: 12px;
-  background: var(--bg-elev); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 8px 8px 8px 16px;
-  transition: border-color 0.15s;
-}
+.permalink-box { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 8px 8px 16px; transition: border-color 0.15s; }
 .permalink-box:focus-within { border-color: var(--accent); }
-.permalink-box input {
-  border: none; background: transparent; padding: 6px 0;
-  font-family: var(--font-mono); font-size: 13px; color: var(--text);
-}
+.permalink-box input { border: none; background: transparent; padding: 6px 0; font-family: var(--font-mono); font-size: 13px; color: var(--text); }
 .permalink-box input:focus { box-shadow: none; }
 
 .share-row { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
 .share-icon { font-family: var(--font-mono); font-size: 14px; }
 
-.brief-content {
-  background: var(--bg-elev); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px;
-}
+.brief-content { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px; }
 @media (max-width: 640px) { .brief-content { padding: 24px 20px; } }
-.brief-content h2 {
-  font-family: var(--font-serif); font-size: 22px; letter-spacing: -0.3px;
-  margin: 36px 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
-  color: var(--text);
-}
+.brief-content h2 { font-family: var(--font-serif); font-size: 22px; letter-spacing: -0.3px; margin: 36px 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); color: var(--text); }
 .brief-content h2:first-child { margin-top: 0; }
-.brief-content h3 {
-  font-size: 12px; margin: 24px 0 10px; color: var(--accent-2);
-  font-family: var(--font-mono); letter-spacing: 3px; text-transform: uppercase; font-weight: 700;
-}
+.brief-content h3 { font-size: 12px; margin: 24px 0 10px; color: var(--accent-2); font-family: var(--font-mono); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
 .brief-content p { color: var(--text-muted); margin: 0 0 14px; line-height: 1.65; }
 .brief-content strong { color: var(--text); font-weight: 600; }
 .brief-content em { color: var(--text); font-style: italic; }
+.brief-content a { color: var(--accent-2); border-bottom: 1px dashed var(--accent-2); transition: color 0.15s, border-color 0.15s; }
+.brief-content a:hover { color: var(--accent-light); border-color: var(--accent-light); }
 .brief-content ul, .brief-content ol { padding-left: 22px; margin: 0 0 14px; }
 .brief-content li { color: var(--text-muted); margin-bottom: 8px; line-height: 1.6; }
 .brief-content li strong { color: var(--text); }
 
 .brief-actions { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
 
-/* PERMALINK VIEW */
 .permalink-page { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
-.permalink-head {
-  background: var(--bg-elev); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 26px 30px; margin-bottom: 24px;
-}
-.permalink-eyebrow {
-  font-family: var(--font-mono); font-size: 11px; color: var(--accent-2);
-  letter-spacing: 3px; font-weight: 700; margin-bottom: 12px;
-}
-.permalink-question {
-  font-family: var(--font-serif); font-size: 22px; font-style: italic;
-  color: var(--text); line-height: 1.4;
-}
+.permalink-head { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px 30px; margin-bottom: 24px; }
+.permalink-eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--accent-2); letter-spacing: 3px; font-weight: 700; margin-bottom: 12px; }
+.permalink-question { font-family: var(--font-serif); font-size: 22px; font-style: italic; color: var(--text); line-height: 1.4; }
 .permalink-actions { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
 
-/* Skeleton loader */
 .skeleton { background: linear-gradient(90deg, var(--bg-elev) 0%, var(--bg-elev2) 50%, var(--bg-elev) 100%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; }
 @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 .skel-line { height: 14px; margin: 10px 0; }
@@ -394,35 +196,17 @@ textarea { resize: vertical; }
 .skel-line.short { width: 45%; }
 .skel-header { height: 22px; margin: 20px 0 10px; width: 40%; }
 
-/* FOOTER */
-.footer {
-  border-top: 1px solid var(--border); text-align: center;
-  padding: 36px 24px; color: var(--text-dim); font-size: 13px;
-  margin-top: 60px;
-}
-.footer .abtalks {
-  color: var(--text-muted); font-weight: 500; margin-bottom: 8px;
-  font-family: var(--font-serif); font-style: italic; font-size: 14px;
-}
+.footer { border-top: 1px solid var(--border); text-align: center; padding: 36px 24px; color: var(--text-dim); font-size: 13px; margin-top: 60px; }
+.footer .abtalks { color: var(--text-muted); font-weight: 500; margin-bottom: 8px; font-family: var(--font-serif); font-style: italic; font-size: 14px; }
 .footer a { color: var(--text-muted); border-bottom: 1px dashed var(--text-dim); transition: color 0.15s, border-color 0.15s; }
 .footer a:hover { color: var(--text); border-color: var(--text-muted); }
 
-/* TOAST (aria-live) */
-.toast {
-  position: fixed; bottom: 24px; left: 50%;
-  transform: translateX(-50%) translateY(80px);
-  background: var(--bg-elev2); border: 1px solid var(--border-strong);
-  color: var(--text); padding: 12px 20px; border-radius: 8px;
-  font-size: 14px; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 200; box-shadow: var(--shadow);
-  display: flex; align-items: center; gap: 8px;
-}
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--bg-elev2); border: 1px solid var(--border-strong); color: var(--text); padding: 12px 20px; border-radius: 8px; font-size: 14px; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 200; box-shadow: var(--shadow); display: flex; align-items: center; gap: 8px; }
 .toast.show { transform: translateX(-50%) translateY(0); }
 .toast.success { border-color: var(--success); }
 .toast.error { border-color: var(--danger); }
 
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; animation: none !important; }
-}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
@@ -434,7 +218,7 @@ textarea { resize: vertical; }
     <div class="brand-logo">K</div>
     <div>
       <div class="brand-name">Kickoff</div>
-      <div class="brand-sub">v1.0 · day 57 of 60</div>
+      <div class="brand-sub">v1.0 · day 58 of 60</div>
     </div>
   </a>
   <nav class="nav" aria-label="Primary">
@@ -462,69 +246,33 @@ textarea { resize: vertical; }
   <section id="how" class="section" aria-labelledby="how-heading">
     <h2 class="section-eyebrow" id="how-heading">HOW IT WORKS</h2>
     <div class="three-cols">
-      <div class="step">
-        <div class="step-num">STEP 01</div>
-        <h3>Paste the vague ask</h3>
-        <p>Copy the exec question exactly as it arrived. Don't rewrite it — that's the tool's job.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">STEP 02</div>
-        <h3>Answer 4-6 clarifiers</h3>
-        <p>Adaptive AI follow-ups probe baseline, segments, definitions, and downstream decisions.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">STEP 03</div>
-        <h3>Share the permalink</h3>
-        <p>Every brief gets a stable URL you can send to your exec for scope sign-off.</p>
-      </div>
+      <div class="step"><div class="step-num">STEP 01</div><h3>Paste the vague ask</h3><p>Copy the exec question exactly as it arrived. Don't rewrite it — that's the tool's job.</p></div>
+      <div class="step"><div class="step-num">STEP 02</div><h3>Answer 4-6 clarifiers</h3><p>Adaptive AI follow-ups probe baseline, segments, definitions, and downstream decisions.</p></div>
+      <div class="step"><div class="step-num">STEP 03</div><h3>Share the permalink</h3><p>Every brief gets a stable URL you can send to your exec for scope sign-off.</p></div>
     </div>
   </section>
 
   <section id="examples" class="section" aria-labelledby="examples-heading">
     <h2 class="section-eyebrow" id="examples-heading">EXAMPLE BRIEFS</h2>
     <div class="examples-grid">
-      <a class="example-card" href="/b/retention" aria-label="View retention example brief">
-        <div class="example-q">"Why is program retention down this quarter?"</div>
-        <div class="example-meta">NONPROFIT · RETENTION <span class="example-arrow">→</span></div>
-      </a>
-      <a class="example-card" href="/b/revenue" aria-label="View revenue example brief">
-        <div class="example-q">"Why did Q3 revenue miss the forecast?"</div>
-        <div class="example-meta">SAAS · VARIANCE <span class="example-arrow">→</span></div>
-      </a>
-      <a class="example-card" href="/b/launch" aria-label="View launch example brief">
-        <div class="example-q">"Should we launch feature X next month?"</div>
-        <div class="example-meta">PRODUCT · GO/NO-GO <span class="example-arrow">→</span></div>
-      </a>
+      <a class="example-card" href="/b/retention" aria-label="View retention example brief"><div class="example-q">"Why is program retention down this quarter?"</div><div class="example-meta">NONPROFIT · RETENTION <span class="example-arrow">→</span></div></a>
+      <a class="example-card" href="/b/revenue" aria-label="View revenue example brief"><div class="example-q">"Why did Q3 revenue miss the forecast?"</div><div class="example-meta">SAAS · VARIANCE <span class="example-arrow">→</span></div></a>
+      <a class="example-card" href="/b/launch" aria-label="View launch example brief"><div class="example-q">"Should we launch feature X next month?"</div><div class="example-meta">PRODUCT · GO/NO-GO <span class="example-arrow">→</span></div></a>
     </div>
   </section>
 
   <section id="faq" class="section faq" aria-labelledby="faq-heading">
     <h2 class="section-eyebrow" id="faq-heading">FAQ</h2>
-    <details>
-      <summary>What is this?</summary>
-      <p>Kickoff is a scoping tool for analysts and ops professionals. When an executive asks a vague question ("why is retention down?"), the tool decomposes it into a structured analysis brief through a five-minute AI-powered interview. Every brief becomes a shareable permalink you send to the exec for scope alignment before you write any SQL.</p>
-    </details>
-    <details>
-      <summary>Is it really free?</summary>
-      <p>Yes. Runs entirely on Cloudflare's free tier — Workers for the backend, Workers AI (Llama 3.2 3B) for the model, KV for storage, Pages for the frontend. No signup, no API key, no credit card. If usage grows past free-tier limits, that's an upgrade problem, not a today problem.</p>
-    </details>
-    <details>
-      <summary>Do you store my data?</summary>
-      <p>Every completed brief is stored in Cloudflare KV so the permalink keeps working. No email, no name, no IP is collected. Treat every permalink as public — anyone with the URL can view the brief.</p>
-    </details>
-    <details>
-      <summary>Which AI model?</summary>
-      <p>Currently Llama 3.2 3B via Cloudflare Workers AI. Small model, strong enough for decomposition tasks. If you hit quality issues, drop feedback on the GitHub repo — a paid tier upgrade to a bigger model is a one-line change.</p>
-    </details>
-    <details>
-      <summary>Can I use it for team briefs?</summary>
-      <p>v1.0 is single-user only. Team workspaces, brief editing, and comments land in v2. Every permalink is already shareable — that covers most collaboration for now.</p>
-    </details>
+    <details><summary>What is this?</summary><p>Kickoff is a scoping tool for analysts and ops professionals. When an executive asks a vague question ("why is retention down?"), the tool decomposes it into a structured analysis brief through a five-minute AI-powered interview. Every brief becomes a shareable permalink you send to the exec for scope alignment before you write any SQL.</p></details>
+    <details><summary>Is it really free?</summary><p>Yes. Runs entirely on Cloudflare's free tier — Workers for the backend, Workers AI (Llama 3.2 3B) for the model, KV for storage, Pages for the frontend. No signup, no API key, no credit card.</p></details>
+    <details><summary>Do you store my data?</summary><p>Every completed brief is stored in Cloudflare KV so the permalink keeps working. No email, no name, no IP is collected. Treat every permalink as public — anyone with the URL can view the brief.</p></details>
+    <details><summary>Which AI model?</summary><p>Currently Llama 3.2 3B via Cloudflare Workers AI. Small model, strong enough for decomposition tasks. If you hit quality issues, drop feedback on the GitHub repo.</p></details>
+    <details><summary>Can I use it for team briefs?</summary><p>v1.0 is single-user only. Team workspaces, brief editing, and comments land in v2. Every permalink is already shareable — that covers most collaboration for now.</p></details>
   </section>
 
   <footer class="footer" role="contentinfo">
     <div class="abtalks">Built with Claude as part of the AB Talks 60-Day Claude AI Challenge.</div>
-    Day 57 of 60 · Ship target Day 60<br>
+    Day 58 of 60 · Ship target Day 60<br>
     <a href="https://github.com/garvit-mittal04/kickoff" target="_blank" rel="noopener">source code</a>
     · <a href="https://github.com/garvit-mittal04/claude-60-days-challenge" target="_blank" rel="noopener">daily writeups</a>
     · #60DayClaudeChallenge
@@ -557,7 +305,7 @@ textarea { resize: vertical; }
       <div class="error-banner" id="error-banner" role="alert"></div>
 
       <label class="sr-only" for="a-input">Your answer</label>
-      <textarea id="a-input" placeholder="Paste the exec question..." aria-label="Answer input"></textarea>
+      <textarea id="a-input" placeholder="Paste the exec question..." aria-label="Answer input" maxlength="5000"></textarea>
 
       <div class="interview-actions">
         <span class="kbd-hint"><kbd>⌘</kbd>+<kbd>Enter</kbd> to submit</span>
@@ -575,11 +323,12 @@ textarea { resize: vertical; }
       <div class="spinner" aria-hidden="true"></div>
       <h2 id="loading-title">Thinking...</h2>
       <p id="loading-sub">The AI is decomposing your ask.</p>
+      <button class="btn ghost" onclick="cancelGeneration()" id="cancel-gen-btn">Cancel</button>
     </div>
   </div>
 </section>
 
-<!-- BRIEF VIEW (post-generation) -->
+<!-- BRIEF VIEW -->
 <section id="view-brief" class="view">
   <div class="brief-page">
     <div class="brief-head">
@@ -603,9 +352,7 @@ textarea { resize: vertical; }
       <button class="btn primary" onclick="startNewBrief()">+ Start a new brief</button>
     </div>
 
-    <footer class="footer">
-      <div class="abtalks">Built with Claude as part of the AB Talks 60-Day Claude AI Challenge.</div>
-    </footer>
+    <footer class="footer"><div class="abtalks">Built with Claude as part of the AB Talks 60-Day Claude AI Challenge.</div></footer>
   </div>
 </section>
 
@@ -631,9 +378,7 @@ textarea { resize: vertical; }
       <button class="btn" onclick="copyPermalink()" id="copy-btn-perma">📋 Copy this link</button>
     </div>
 
-    <footer class="footer">
-      <div class="abtalks">Built with Claude as part of the AB Talks 60-Day Claude AI Challenge.</div>
-    </footer>
+    <footer class="footer"><div class="abtalks">Built with Claude as part of the AB Talks 60-Day Claude AI Challenge.</div></footer>
   </div>
 </section>
 
@@ -643,18 +388,36 @@ textarea { resize: vertical; }
 
 <script>
 /* ==========================================================
-   API CONFIG
+   API CONFIG + CONSTANTS
    ========================================================== */
 const API_BASE = 'https://kickoff-api.garvitm534.workers.dev';
+const FETCH_TIMEOUT_MS = 30000;         // 30s ceiling on any request
+const BRIEF_TIMEOUT_MS = 45000;         // 45s for brief generation (biggest AI call)
+const MAX_SAVES_PER_SESSION = 10;       // client-side session cap
 
-/* ==========================================================
-   FALLBACK EXAMPLE BRIEFS (safety net if KV read fails)
-   ========================================================== */
+const ERROR_MESSAGES = {
+  400: 'That input doesn\'t look right. Try a longer question.',
+  404: 'That brief doesn\'t exist or was removed.',
+  409: 'Slug already exists.',
+  429: 'You\'ve made a lot of requests — wait a minute and try again.',
+  500: 'Something went wrong on our end. Please retry.',
+  502: 'The AI service is having trouble. Please retry in a moment.',
+  503: 'The service is temporarily unavailable. Retry in a minute.',
+  504: 'Request timed out. The AI is slow — please try again.',
+  'timeout': 'Request took too long. Please try again.',
+  'aborted': 'Request was cancelled.',
+  'offline': 'You appear to be offline. Check your connection and retry.',
+};
+
+function errorMessageFor(err, status) {
+  if (err && err.name === 'AbortError') return ERROR_MESSAGES['aborted'];
+  if (!navigator.onLine) return ERROR_MESSAGES['offline'];
+  if (status && ERROR_MESSAGES[status]) return ERROR_MESSAGES[status];
+  return err?.message || 'Something went wrong. Please try again.';
+}
+
 const EXAMPLE_BRIEFS = {
-  'retention': {
-    originalQuestion: "Why is program retention down this quarter?",
-    briefMarkdown: "## The Question\nInvestigate the drivers of the Fall 2024 cohort retention drop.\n\n## Sub-questions\n1. **How much has retention dropped?**\n2. **Which segments are driving it?**\n\n## Estimated effort\n**6-10 hours**."
-  }
+  'retention': { originalQuestion: "Why is program retention down this quarter?", briefMarkdown: "## The Question\nInvestigate the drivers of the Fall 2024 cohort retention drop.\n\n## Sub-questions\n1. **How much has retention dropped?**\n2. **Which segments are driving it?**\n\n## Estimated effort\n**6-10 hours**." }
 };
 
 /* ==========================================================
@@ -667,6 +430,7 @@ const STATE = {
   currentClarifier: null,
   currentSlug: null,
   briefMarkdown: null,
+  activeAbortController: null,
 };
 
 /* ==========================================================
@@ -681,7 +445,6 @@ function switchView(name) {
   if (el) el.classList.add('active');
   STATE.view = name;
   window.scrollTo({ top: 0, behavior: 'auto' });
-  // Update page title for the current view (SEO + tab clarity)
   const titles = {
     landing: 'Kickoff — the analysis brief you write before you write any SQL',
     interview: 'Kickoff Interview',
@@ -701,16 +464,31 @@ function toast(msg, kind) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-function showError(msg) {
-  const el = $('#error-banner');
-  el.textContent = msg;
-  el.classList.add('show');
-}
+function showError(msg) { const el = $('#error-banner'); el.textContent = msg; el.classList.add('show'); }
 function clearError() { $('#error-banner').classList.remove('show'); }
-function setSubmitBusy(busy) {
-  const btn = $('#submit-btn');
-  btn.disabled = busy;
-  btn.textContent = busy ? 'Sending…' : 'Submit →';
+function setSubmitBusy(busy) { const btn = $('#submit-btn'); btn.disabled = busy; btn.textContent = busy ? 'Sending…' : 'Submit →'; }
+
+/* ==========================================================
+   FETCH WITH TIMEOUT + ABORT SUPPORT
+   ========================================================== */
+async function fetchWithTimeout(url, options = {}, timeoutMs = FETCH_TIMEOUT_MS) {
+  const controller = new AbortController();
+  STATE.activeAbortController = controller;
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, { ...options, signal: controller.signal });
+    return response;
+  } finally {
+    clearTimeout(timeoutId);
+    if (STATE.activeAbortController === controller) STATE.activeAbortController = null;
+  }
+}
+
+function cancelGeneration() {
+  if (STATE.activeAbortController) STATE.activeAbortController.abort();
+  stopLoadingRotation();
+  switchView('interview');
+  showError('Cancelled. You can retry any time.');
 }
 
 /* ==========================================================
@@ -738,16 +516,11 @@ function startInterview() {
 async function submitAnswer() {
   clearError();
   const answer = $('#a-input').value.trim();
-  if (answer.length < 3) {
-    showError('Give at least a short answer, or use Skip.');
-    return;
-  }
+  if (answer.length < 3) { showError('Give at least a short answer, or use Skip.'); return; }
 
   if (!STATE.originalQuestion) {
-    if (answer.length < 10) {
-      showError('The exec question should be at least a full sentence.');
-      return;
-    }
+    if (answer.length < 10) { showError('The exec question should be at least a full sentence.'); return; }
+    if (answer.length > 2000) { showError('Question is too long — please trim to under 2000 characters.'); return; }
     STATE.originalQuestion = answer;
     STATE.transcript = [];
   } else {
@@ -769,24 +542,18 @@ async function fetchNextClarifier() {
   setSubmitBusy(true);
   clearError();
   try {
-    const response = await fetch(`${API_BASE}/api/interview`, {
+    const response = await fetchWithTimeout(`${API_BASE}/api/interview`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        originalQuestion: STATE.originalQuestion,
-        transcript: STATE.transcript,
-      }),
+      body: JSON.stringify({ originalQuestion: STATE.originalQuestion, transcript: STATE.transcript }),
     });
     if (!response.ok) {
       const err = await response.json().catch(() => ({}));
-      throw new Error(err.message || `Server returned ${response.status}`);
+      throw Object.assign(new Error(err.message || `Server returned ${response.status}`), { status: response.status });
     }
     const data = await response.json();
 
-    if (data.isReady) {
-      await generateAndSaveBrief();
-      return;
-    }
+    if (data.isReady) { await generateAndSaveBrief(); return; }
 
     STATE.currentClarifier = data.clarifier;
     const clarifierNum = data.turnNumber;
@@ -803,13 +570,12 @@ async function fetchNextClarifier() {
     $('#skip-btn').style.display = '';
     setTimeout(() => $('#a-input').focus(), 100);
   } catch (err) {
-    showError('Could not reach the AI. ' + (err.message || 'Please try again.'));
+    showError(errorMessageFor(err, err.status));
   } finally {
     setSubmitBusy(false);
   }
 }
 
-/* Rotating loading messages while brief generates */
 const LOADING_MESSAGES = [
   { title: 'Decomposing your ask…', sub: 'Breaking the question into sub-questions.' },
   { title: 'Ranking hypotheses…', sub: 'Ordering by likely impact.' },
@@ -830,35 +596,44 @@ function startLoadingRotation() {
 }
 function stopLoadingRotation() { clearInterval(loadingTimer); }
 
+function getSessionSaveCount() {
+  try { return parseInt(localStorage.getItem('kickoff_saves_today') || '0', 10) || 0; }
+  catch { return 0; }
+}
+function incrementSessionSaveCount() {
+  try { localStorage.setItem('kickoff_saves_today', String(getSessionSaveCount() + 1)); } catch {}
+}
+
 async function generateAndSaveBrief() {
+  // Client-side session cap
+  if (getSessionSaveCount() >= MAX_SAVES_PER_SESSION) {
+    showError(`You've created ${MAX_SAVES_PER_SESSION} briefs from this browser. Wait a bit or clear site data to reset.`);
+    return;
+  }
+
   switchView('generating');
   startLoadingRotation();
   try {
-    const briefResponse = await fetch(`${API_BASE}/api/brief`, {
+    // Step 1: generate brief (bigger timeout budget)
+    const briefResponse = await fetchWithTimeout(`${API_BASE}/api/brief`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        originalQuestion: STATE.originalQuestion,
-        transcript: STATE.transcript,
-      }),
-    });
+      body: JSON.stringify({ originalQuestion: STATE.originalQuestion, transcript: STATE.transcript }),
+    }, BRIEF_TIMEOUT_MS);
     if (!briefResponse.ok) {
       const err = await briefResponse.json().catch(() => ({}));
-      throw new Error(err.message || 'Brief generation failed');
+      throw Object.assign(new Error(err.message || 'Brief generation failed'), { status: briefResponse.status });
     }
     const briefData = await briefResponse.json();
     STATE.briefMarkdown = briefData.briefMarkdown;
 
-    // Save to KV
+    // Step 2: save
     $('#loading-title').textContent = 'Saving your permalink…';
     $('#loading-sub').textContent = 'One second.';
-    const saveResponse = await fetch(`${API_BASE}/api/save`, {
+    const saveResponse = await fetchWithTimeout(`${API_BASE}/api/save`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        originalQuestion: STATE.originalQuestion,
-        briefMarkdown: STATE.briefMarkdown,
-      }),
+      body: JSON.stringify({ originalQuestion: STATE.originalQuestion, briefMarkdown: STATE.briefMarkdown }),
     });
     stopLoadingRotation();
 
@@ -870,6 +645,7 @@ async function generateAndSaveBrief() {
     }
     const saveData = await saveResponse.json();
     STATE.currentSlug = saveData.slug;
+    incrementSessionSaveCount();
 
     const realUrl = window.location.origin + '/b/' + STATE.currentSlug;
     $('#permalink-url').value = realUrl;
@@ -881,62 +657,39 @@ async function generateAndSaveBrief() {
     switchView('brief');
   } catch (err) {
     stopLoadingRotation();
+    if (err.name === 'AbortError') { return; } // cancelled by user, handled elsewhere
     switchView('interview');
-    showError('Could not generate the brief. ' + (err.message || 'Please try again.'));
+    showError(errorMessageFor(err, err.status));
   }
 }
 
 function cancelInterview() {
   if (STATE.originalQuestion && !confirm('Cancel and lose your progress?')) return;
-  STATE.originalQuestion = null;
-  STATE.transcript = [];
-  STATE.currentClarifier = null;
+  STATE.originalQuestion = null; STATE.transcript = []; STATE.currentClarifier = null;
   switchView('landing');
 }
 
-function startNewBrief() {
-  window.history.pushState({}, '', '/');
-  switchView('landing');
-}
+function startNewBrief() { window.history.pushState({}, '', '/'); switchView('landing'); }
 
 /* ==========================================================
-   MARKDOWN RENDERER
+   MARKDOWN RENDERER — with link support (Day 58)
    ========================================================== */
 function renderMarkdownInto(md, containerId) {
-  if (!md) {
-    document.getElementById(containerId).innerHTML = '<p>No brief content returned.</p>';
-    return;
-  }
+  if (!md) { document.getElementById(containerId).innerHTML = '<p>No brief content returned.</p>'; return; }
   const lines = md.split('\n');
   const out = [];
   let inUl = false, inOl = false;
-
-  const closeLists = () => {
-    if (inUl) { out.push('</ul>'); inUl = false; }
-    if (inOl) { out.push('</ol>'); inOl = false; }
-  };
-
+  const closeLists = () => { if (inUl) { out.push('</ul>'); inUl = false; } if (inOl) { out.push('</ol>'); inOl = false; } };
   for (let raw of lines) {
     const line = raw.trimEnd();
     if (!line.trim()) { closeLists(); continue; }
-
     if (/^## /.test(line)) { closeLists(); out.push('<h2>' + inline(line.slice(3)) + '</h2>'); continue; }
     if (/^### /.test(line)) { closeLists(); out.push('<h3>' + inline(line.slice(4)) + '</h3>'); continue; }
     if (/^#{4,} /.test(line)) { closeLists(); out.push('<h3>' + inline(line.replace(/^#+\s*/, '')) + '</h3>'); continue; }
-
     const ol = line.match(/^\s*(\d+)\.\s+(.*)$/);
-    if (ol) {
-      if (!inOl) { closeLists(); out.push('<ol>'); inOl = true; }
-      out.push('<li>' + inline(ol[2]) + '</li>');
-      continue;
-    }
+    if (ol) { if (!inOl) { closeLists(); out.push('<ol>'); inOl = true; } out.push('<li>' + inline(ol[2]) + '</li>'); continue; }
     const ul = line.match(/^\s*[-*]\s+(.*)$/);
-    if (ul) {
-      if (!inUl) { closeLists(); out.push('<ul>'); inUl = true; }
-      out.push('<li>' + inline(ul[1]) + '</li>');
-      continue;
-    }
-
+    if (ul) { if (!inUl) { closeLists(); out.push('<ul>'); inUl = true; } out.push('<li>' + inline(ul[1]) + '</li>'); continue; }
     closeLists();
     out.push('<p>' + inline(line) + '</p>');
   }
@@ -945,15 +698,17 @@ function renderMarkdownInto(md, containerId) {
 }
 
 function inline(text) {
-  let t = text
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  let t = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // Markdown links [text](url) — Day 58 addition
+  t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener nofollow">$1</a>');
   t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   t = t.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
   return t;
 }
 
 /* ==========================================================
-   SHARE ACTIONS (with success flash micro-interaction)
+   SHARE ACTIONS
    ========================================================== */
 function flashSuccess(btnId) {
   const btn = document.getElementById(btnId);
@@ -961,31 +716,39 @@ function flashSuccess(btnId) {
   const originalText = btn.textContent;
   btn.classList.add('success-flash');
   btn.textContent = '✓ Copied!';
-  setTimeout(() => {
-    btn.classList.remove('success-flash');
-    btn.textContent = originalText;
-  }, 1400);
+  setTimeout(() => { btn.classList.remove('success-flash'); btn.textContent = originalText; }, 1400);
 }
 
-function copyPermalink() {
+async function copyToClipboardSafe(text) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+    // Fallback for older browsers / non-secure contexts
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch (err) { return false; }
+}
+
+async function copyPermalink() {
   const url = $('#permalink-url').value || window.location.href;
-  if (!url || url.startsWith('(')) {
-    toast('No permalink to copy yet.');
-    return;
-  }
-  navigator.clipboard.writeText(url).then(() => {
-    toast('Link copied ✓', 'success');
-    flashSuccess('copy-btn');
-    flashSuccess('copy-btn-perma');
-  });
+  if (!url || url.startsWith('(')) { toast('No permalink to copy yet.'); return; }
+  const ok = await copyToClipboardSafe(url);
+  if (ok) { toast('Link copied ✓', 'success'); flashSuccess('copy-btn'); flashSuccess('copy-btn-perma'); }
+  else { toast('Copy failed. Long-press to copy manually.', 'error'); }
 }
 
-function shareSlack() {
+async function shareSlack() {
   const url = $('#permalink-url').value || window.location.href;
   const text = 'Kickoff brief for your review: ' + url;
-  navigator.clipboard.writeText(text).then(() => {
-    toast('Slack message copied. Paste in your channel.', 'success');
-  });
+  const ok = await copyToClipboardSafe(text);
+  if (ok) toast('Slack message copied. Paste in your channel.', 'success');
+  else toast('Copy failed.', 'error');
 }
 
 function shareEmail() {
@@ -1000,17 +763,13 @@ function shareEmail() {
    ========================================================== */
 function checkURL() {
   const match = window.location.pathname.match(/^\/b\/([a-z0-9-]{3,20})\/?$/i);
-  if (match) {
-    const slug = match[1].toLowerCase();
-    showPermalink(slug);
-  }
+  if (match) { showPermalink(match[1].toLowerCase()); }
 }
 
 async function showPermalink(slug) {
   switchView('permalink');
   $('#perma-question').textContent = 'Loading…';
   $('#perma-date').textContent = '…';
-  // Keep skeleton until real content arrives
   $('#perma-content').innerHTML = `
     <div class="skeleton skel-header"></div>
     <div class="skeleton skel-line wide"></div>
@@ -1021,9 +780,8 @@ async function showPermalink(slug) {
     <div class="skeleton skel-line mid"></div>
     <div class="skeleton skel-line short"></div>
   `;
-
   try {
-    const response = await fetch(`${API_BASE}/api/brief/${slug}`);
+    const response = await fetchWithTimeout(`${API_BASE}/api/brief/${slug}`);
     if (response.status === 404) {
       const fallback = EXAMPLE_BRIEFS[slug];
       if (fallback) {
@@ -1036,7 +794,7 @@ async function showPermalink(slug) {
       $('#perma-content').innerHTML = '<p style="text-align:center;padding:60px 20px;color:var(--text-muted);">This brief doesn\'t exist or was removed. <a href="/" style="color:var(--accent-2);">← Create a new one</a></p>';
       return;
     }
-    if (!response.ok) throw new Error('Server returned ' + response.status);
+    if (!response.ok) throw Object.assign(new Error('Server returned ' + response.status), { status: response.status });
     const data = await response.json();
     $('#perma-question').textContent = '"' + data.originalQuestion + '"';
     renderMarkdownInto(data.briefMarkdown, 'perma-content');
@@ -1044,8 +802,9 @@ async function showPermalink(slug) {
     $('#perma-date').textContent = created.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
     $('#permalink-url').value = window.location.href;
   } catch (err) {
+    const msg = errorMessageFor(err, err.status);
     $('#perma-question').textContent = 'Error loading brief';
-    $('#perma-content').innerHTML = '<p style="text-align:center;color:var(--danger);padding:60px 20px;">Failed to load. <a href="/" style="color:var(--accent-2);">← Create a new brief</a></p>';
+    $('#perma-content').innerHTML = `<p style="text-align:center;color:var(--danger);padding:60px 20px;">${msg} <a href="/" style="color:var(--accent-2);">← Create a new brief</a></p>`;
   }
 }
 
@@ -1053,16 +812,12 @@ async function showPermalink(slug) {
    KEYBOARD SHORTCUTS
    ========================================================== */
 document.addEventListener('keydown', (e) => {
-  // Cmd/Ctrl+Enter to submit from interview textarea
   if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && STATE.view === 'interview') {
     e.preventDefault();
     submitAnswer();
   }
-  // Escape to cancel interview
-  if (e.key === 'Escape' && STATE.view === 'interview') {
-    e.preventDefault();
-    cancelInterview();
-  }
+  if (e.key === 'Escape' && STATE.view === 'interview') { e.preventDefault(); cancelInterview(); }
+  if (e.key === 'Escape' && STATE.view === 'generating') { e.preventDefault(); cancelGeneration(); }
 });
 
 /* ==========================================================
@@ -1072,9 +827,6 @@ document.addEventListener('DOMContentLoaded', checkURL);
 window.addEventListener('popstate', checkURL);
 checkURL();
 </script>
-
-<!-- Cloudflare Web Analytics — activated after enabling in dashboard (Milestone 3) -->
-<!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script> -->
 
 </body>
 </html>

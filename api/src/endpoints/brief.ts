@@ -2,10 +2,13 @@
  * endpoints/brief.ts — POST /api/brief
  *
  * Generates the final structured brief from a completed interview transcript.
- * Called once, after /api/interview returns isReady: true.
+ *
+ * Day 58 hardening:
+ *  - Reject too-short AI responses (< 300 chars) as generation failure
+ *  - Warn when brief doesn't contain the expected core headers
  *
  * Request:  { originalQuestion: string, transcript: Array<{role, text}> }
- * Response: { briefMarkdown: string }
+ * Response: { briefMarkdown: string, warning?: string }
  */
 
 import { callAI, type AIBinding, type Message } from '../lib/ai';
@@ -28,9 +31,10 @@ export async function handleBrief(request: Request, env: { AI: AIBinding }): Pro
   }
   const { originalQuestion, transcript } = validated.data;
 
-  // Assemble a plain-text transcript for the model
   const transcriptText = transcript.map((t, i) => {
-    return t.role === 'model' ? `[Clarifier ${Math.floor(i/2) + 1}] ${t.text}` : `[Analyst answer] ${t.text}`;
+    return t.role === 'model'
+      ? `[Clarifier ${Math.floor(i/2) + 1}] ${t.text}`
+      : `[Analyst answer] ${t.text}`;
   }).join('\n\n');
 
   const userMessage = `Original exec question:\n"${originalQuestion}"\n\nInterview transcript:\n\n${transcriptText || '(No clarifiers were needed; the original question was specific enough.)'}\n\nProduce the structured brief now.`;
@@ -44,18 +48,35 @@ export async function handleBrief(request: Request, env: { AI: AIBinding }): Pro
   try {
     raw = await callAI(env.AI, messages, { maxTokens: 2000, temperature: 0.4 });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: 'ai_generation_failed', message: 'The brief could not be generated. Please try again.' }), { status: 502, headers: cors });
+    console.error('Brief generation AI call failed:', err?.message || err);
+    return new Response(JSON.stringify({
+      error: 'ai_generation_failed',
+      message: 'The AI service could not produce a brief. Please try again in a moment.',
+    }), { status: 502, headers: cors });
   }
 
-  // Basic sanity check: brief should contain the expected section headers
-  const hasQuestionSection = /##\s+The Question/i.test(raw);
-  const hasSubqSection = /##\s+Sub-questions/i.test(raw);
+  const briefMarkdown = raw.trim();
+
+  // Day 58 hardening — reject too-short responses (likely refusal or error)
+  if (briefMarkdown.length < 300) {
+    console.error('Brief too short, likely AI refusal:', briefMarkdown.slice(0, 200));
+    return new Response(JSON.stringify({
+      error: 'brief_too_short',
+      message: 'The AI returned an unexpectedly short brief. Please retry — often works on the second attempt.',
+    }), { status: 502, headers: cors });
+  }
+
+  // Check structural quality — should have H2 headers for our canonical sections
+  const hasQuestionSection = /##\s+The Question/i.test(briefMarkdown);
+  const hasSubqSection = /##\s+Sub-questions/i.test(briefMarkdown);
+
   if (!hasQuestionSection || !hasSubqSection) {
     return new Response(JSON.stringify({
-      briefMarkdown: raw,
+      briefMarkdown,
       warning: 'brief_may_be_malformed',
+      message: 'The brief was generated but is missing expected sections. You can still save it.',
     }), { status: 200, headers: cors });
   }
 
-  return new Response(JSON.stringify({ briefMarkdown: raw }), { status: 200, headers: cors });
+  return new Response(JSON.stringify({ briefMarkdown }), { status: 200, headers: cors });
 }
