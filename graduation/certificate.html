@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Certificate of Completion · AB Talks 10-Day Capstone Sprint · Garvit Mittal</title>
+<meta name="description" content="Certificate of Completion for the AB Talks 10-Day Capstone Sprint, part of the 60-Day Claude AI Challenge." />
+<style>
+  /* Print sizing: US Letter Landscape */
+  @page {
+    size: 11in 8.5in;
+    margin: 0;
+  }
+  @media print {
+    body { background: white !important; padding: 0 !important; }
+    .print-hint { display: none !important; }
+    .cert { box-shadow: none !important; page-break-after: always; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #fdfbf5;
+    --ink: #1a1a1a;
+    --ink-soft: #444;
+    --gold: #b8860b;
+    --gold-light: #d4af37;
+    --blueprint: #0e3a5f;
+    --accent: #f97316;
+    --divider: #d4b26a;
+    --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --font-script: "Snell Roundhand", "Apple Chancery", cursive;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  html, body { background: #2b2b2b; }
+  body {
+    font-family: var(--font-serif);
+    color: var(--ink);
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .print-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    z-index: 999;
+  }
+
+  .cert {
+    width: 11in;
+    height: 8.5in;
+    background: var(--paper);
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(212, 178, 106, 0.05), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(14, 58, 95, 0.04), transparent 40%);
+    padding: 0.5in;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Decorative outer border */
+  .cert::before {
+    content: "";
+    position: absolute;
+    inset: 0.25in;
+    border: 2px solid var(--gold);
+    pointer-events: none;
+  }
+  .cert::after {
+    content: "";
+    position: absolute;
+    inset: 0.32in;
+    border: 1px solid var(--gold-light);
+    pointer-events: none;
+  }
+
+  /* Corner ornaments */
+  .corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    z-index: 2;
+  }
+  .corner svg { width: 100%; height: 100%; display: block; }
+  .corner-tl { top: 0.35in; left: 0.35in; }
+  .corner-tr { top: 0.35in; right: 0.35in; transform: scaleX(-1); }
+  .corner-bl { bottom: 0.35in; left: 0.35in; transform: scaleY(-1); }
+  .corner-br { bottom: 0.35in; right: 0.35in; transform: scale(-1, -1); }
+
+  /* Inner content */
+  .content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 80px 40px;
+  }
+
+  header.cert-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 32px;
+  }
+
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-img {
+    width: 68px;
+    height: 68px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .logo-fallback {
+    width: 68px;
+    height: 68px;
+    background: var(--blueprint);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+    border-radius: 4px;
+  }
+
+  .brand-text .brand-name {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--blueprint);
+    text-transform: uppercase;
+  }
+  .brand-text .brand-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  .cert-meta {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .cert-meta .cert-id {
+    color: var(--gold);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* Body */
+  .body {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .presented {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  h1.title {
+    font-family: var(--font-serif);
+    font-size: 44px;
+    font-weight: 400;
+    color: var(--blueprint);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  h1.title strong { font-weight: 700; }
+
+  .subtitle {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .awarded-to {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .recipient {
+    font-family: var(--font-script);
+    font-size: 68px;
+    color: var(--blueprint);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .recipient-underline {
+    width: 380px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 32px;
+  }
+
+  .citation {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    max-width: 720px;
+    margin: 0 auto 28px;
+  }
+  .citation strong { color: var(--blueprint); }
+  .citation .project { font-style: italic; color: var(--accent); font-weight: 600; }
+  .citation .version { font-family: var(--font-mono); font-size: 13px; color: var(--gold); font-weight: 600; letter-spacing: 0.05em; }
+
+  /* Details row */
+  .details-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--divider);
+  }
+  .detail {
+    text-align: center;
+  }
+  .detail-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .detail-value {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: var(--blueprint);
+    font-weight: 600;
+  }
+
+  /* Footer */
+  footer.cert-footer {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--divider);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+  }
+
+  .signatures {
+    display: flex;
+    gap: 40px;
+    flex: 1;
+  }
+  .sig {
+    text-align: left;
+    flex: 1;
+  }
+  .sig-line {
+    width: 140px;
+    height: 1px;
+    background: var(--ink);
+    margin-bottom: 6px;
+  }
+  .sig-name {
+    font-family: var(--font-serif);
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .sig-role {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .footer-links {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+  .footer-links a {
+    color: var(--blueprint);
+    text-decoration: none;
+    display: block;
+    margin: 2px 0;
+    font-weight: 600;
+  }
+  .footer-links a:hover { text-decoration: underline; }
+  .footer-links .credit {
+    margin-top: 8px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+
+  /* Seal (Version v1.0.0 medal) */
+  .seal {
+    position: absolute;
+    right: 100px;
+    top: 205px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 60%),
+      linear-gradient(135deg, var(--gold-light), var(--gold));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    border: 3px solid var(--gold);
+    box-shadow: 0 4px 12px rgba(184, 134, 11, 0.35);
+    transform: rotate(-8deg);
+    z-index: 3;
+  }
+  .seal .seal-top {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .seal .seal-mid {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    margin: 2px 0;
+    line-height: 1;
+  }
+  .seal .seal-bot {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+</style>
+</head>
+<body>
+
+<div class="print-hint">
+  Press <strong>Cmd + P</strong> (Mac) or <strong>Ctrl + P</strong> (Windows) → Landscape → Save as PDF
+</div>
+
+<div class="cert">
+  <!-- Corner ornaments -->
+  <div class="corner corner-tl">
+    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 5 30 L 5 5 L 30 5" stroke="#b8860b" stroke-width="1.5" fill="none"/>
+      <path d="M 12 30 L 12 12 L 30 12" stroke="#d4af37" stroke-width="1" fill="none"/>
+      <circle cx="5" cy="5" r="3" fill="#b8860b"/>
+    </svg>
+  </div>
+  <div class="corner corner-tr">
+    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 5 30 L 5 5 L 30 5" stroke="#b8860b" stroke-width="1.5" fill="none"/>
+      <path d="M 12 30 L 12 12 L 30 12" stroke="#d4af37" stroke-width="1" fill="none"/>
+      <circle cx="5" cy="5" r="3" fill="#b8860b"/>
+    </svg>
+  </div>
+  <div class="corner corner-bl">
+    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 5 30 L 5 5 L 30 5" stroke="#b8860b" stroke-width="1.5" fill="none"/>
+      <path d="M 12 30 L 12 12 L 30 12" stroke="#d4af37" stroke-width="1" fill="none"/>
+      <circle cx="5" cy="5" r="3" fill="#b8860b"/>
+    </svg>
+  </div>
+  <div class="corner corner-br">
+    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 5 30 L 5 5 L 30 5" stroke="#b8860b" stroke-width="1.5" fill="none"/>
+      <path d="M 12 30 L 12 12 L 30 12" stroke="#d4af37" stroke-width="1" fill="none"/>
+      <circle cx="5" cy="5" r="3" fill="#b8860b"/>
+    </svg>
+  </div>
+
+  <!-- Version seal -->
+  <div class="seal">
+    <div class="seal-top">Shipped</div>
+    <div class="seal-mid">v1.0.0</div>
+    <div class="seal-bot">Jul 28 · 2026</div>
+  </div>
+
+  <div class="content">
+
+    <header class="cert-header">
+      <div class="logo-block">
+        <!--
+          Drop the AB Talks logo file next to this HTML (same folder) named 'abtalks-logo.png'
+          and the image will load. Otherwise the styled fallback initials render.
+        -->
+        <img src="abtalks-logo.png" alt="AB Talks logo" class="logo-img"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="logo-fallback" style="display:none;">AB</div>
+        <div class="brand-text">
+          <div class="brand-name">AB Talks on AI</div>
+          <div class="brand-tag">60-Day Claude AI Challenge</div>
+        </div>
+      </div>
+
+      <div class="cert-meta">
+        <div>Certificate of Completion</div>
+        <div class="cert-id">Cert № 60-DCC-2026-GM10</div>
+      </div>
+    </header>
+
+    <div class="body">
+      <div class="presented">This certificate is presented to</div>
+
+      <div class="recipient">Garvit Mittal</div>
+      <div class="recipient-underline"></div>
+
+      <div class="awarded-to">In recognition of the successful completion of the</div>
+
+      <h1 class="title">AB Talks <strong>10-Day Capstone Sprint</strong></h1>
+      <div class="subtitle">Final Practical Milestone · 60-Day Claude AI Challenge</div>
+
+      <p class="citation">
+        For designing, building, hardening, and shipping <span class="project">Kickoff <span class="version">v1.0.0</span></span> — a production AI web application delivered through a structured 10-day sprint covering the full software development lifecycle, from requirements gathering to a live, publicly accessible production release. This capstone project was completed as part of the AB Talks 60-Day Claude AI Challenge, and represents the culmination of skills built across AI foundations, prompt engineering, product thinking, automation, agentic systems, and AI-assisted development.
+      </p>
+
+      <div class="details-row">
+        <div class="detail">
+          <div class="detail-label">Project</div>
+          <div class="detail-value">Kickoff</div>
+        </div>
+        <div class="detail">
+          <div class="detail-label">Release Version</div>
+          <div class="detail-value">v1.0.0</div>
+        </div>
+        <div class="detail">
+          <div class="detail-label">Completion Date</div>
+          <div class="detail-value">July 28, 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="cert-footer">
+      <div class="signatures">
+        <div class="sig">
+          <div class="sig-line"></div>
+          <div class="sig-name">Anil Bajpai</div>
+          <div class="sig-role">Founder · AB Talks on AI</div>
+        </div>
+        <div class="sig">
+          <div class="sig-line"></div>
+          <div class="sig-name">Claude (free tier)</div>
+          <div class="sig-role">Co-creator · Project Mentor</div>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="https://www.abtalks.in/" target="_blank" rel="noopener">abtalks.in</a>
+        <a href="https://www.linkedin.com/company/abtalks-on-ai/" target="_blank" rel="noopener">linkedin.com/company/abtalks-on-ai</a>
+        <div class="credit">Built with Claude · Free tier</div>
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+</body>
+</html>
